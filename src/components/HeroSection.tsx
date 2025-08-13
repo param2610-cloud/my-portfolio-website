@@ -4,7 +4,7 @@ import profilePhoto from "@/assets/profile-photo.jpg";
 
 export function HeroSection() {
   return (
-    <section id="hero" className="hero-section px-6">
+    <section id="hero" className="hero-section px-6 pt-32">
       <div className="container max-w-4xl mx-auto text-center animate-fade-in">
         <div className="mb-8">
           <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl animate-float">

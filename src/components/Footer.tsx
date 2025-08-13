@@ -10,7 +10,7 @@ export function Footer() {
           <span>using React & Tailwind CSS</span>
         </p>
         <p className="text-sm text-muted-foreground mt-2">
-          © 2024 Parambrata Ghosh. All rights reserved.
+          © 2025 Parambrata Ghosh. All rights reserved.
         </p>
       </div>
     </footer>
