@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Portfolio Design System - Clean, Professional, Modern */
+
+@layer base {
+  :root {
+    /* Core Theme Colors */
+    --background: 250 100% 99%;
+    --foreground: 215 25% 15%;
+
+    /* Card System */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+    --card-hover: 220 20% 98%;
+
+    /* Interactive Elements */
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Professional Brand Colors */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 217 91% 55%;
+
+    /* Supporting Colors */
+    --secondary: 220 15% 96%;
+    --secondary-foreground: 215 25% 15%;
+
+    --muted: 220 15% 96%;
+    --muted-foreground: 215 15% 50%;
+
+    --accent: 217 91% 95%;
+    --accent-foreground: 217 91% 60%;
+
+    /* Status Colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    /* Interface Elements */
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 217 91% 60%;
+
+    /* Design System Variables */
+    --radius: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-lg: 1rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(217 91% 70%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(220 20% 98%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(250 100% 99%) 0%, hsl(220 20% 96%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(220 20% 20% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(220 20% 20% / 0.1), 0 2px 4px -1px hsl(220 20% 20% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(220 20% 20% / 0.1), 0 4px 6px -2px hsl(220 20% 20% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(220 20% 20% / 0.1), 0 10px 10px -5px hsl(220 20% 20% / 0.04);
+    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.2);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Typography */
+    --font-heading: 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  .dark {
+    /* Dark Theme Colors */
+    --background: 215 25% 8%;
+    --foreground: 220 15% 95%;
+
+    /* Dark Card System */
+    --card: 215 25% 10%;
+    --card-foreground: 220 15% 95%;
+    --card-hover: 215 25% 12%;
+
+    /* Dark Interactive Elements */
+    --popover: 215 25% 10%;
+    --popover-foreground: 220 15% 95%;
+
+    /* Dark Brand Colors */
+    --primary: 217 91% 65%;
+    --primary-foreground: 215 25% 8%;
+    --primary-hover: 217 91% 70%;
+
+    /* Dark Supporting Colors */
+    --secondary: 215 25% 15%;
+    --secondary-foreground: 220 15% 95%;
+
+    --muted: 215 25% 15%;
+    --muted-foreground: 220 15% 65%;
+
+    --accent: 215 25% 15%;
+    --accent-foreground: 217 91% 65%;
+
+    /* Dark Status Colors */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 220 15% 95%;
+
+    --success: 142 71% 50%;
+    --success-foreground: 215 25% 8%;
+
+    /* Dark Interface Elements */
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 217 91% 65%;
+
+    /* Dark Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(217 91% 75%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(215 25% 12%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(215 25% 8%) 0%, hsl(215 25% 12%) 100%);
+
+    /* Dark Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.4), 0 2px 4px -1px hsl(0 0% 0% / 0.2);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.4), 0 4px 6px -2px hsl(0 0% 0% / 0.2);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.4), 0 10px 10px -5px hsl(0 0% 0% / 0.2);
+    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+}
+
+@layer components {
+  /* Hero Section Styles */
+  .hero-section {
+    @apply min-h-screen flex items-center justify-center;
+    background: var(--gradient-hero);
+  }
+
+  /* Card Hover Effects */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
+    background: var(--gradient-card);
+  }
+
+  .card-hover:hover {
+    background: hsl(var(--card-hover));
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Skill Badge Styles */
+  .skill-badge {
+    @apply px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300;
+    @apply bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground;
+    @apply hover:scale-105 hover:shadow-md;
+  }
+
+  /* Section Headings */
+  .section-heading {
+    @apply text-3xl font-bold mb-8 text-center;
+    @apply bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent;
+  }
+
+  /* Smooth Animations */
+  .fade-in-up {
+    @apply animate-fade-in;
+  }
+
+  .fade-in-delayed {
+    @apply animate-fade-in;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+  }
+
+  .slide-in-delayed {
+    @apply animate-slide-in-left;
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
+  }
+
+  /* Glass Effect */
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  .dark .glass-effect {
+    @apply bg-black/10 border-white/10;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent;
+  }
+
+  /* Button Variants */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium;
+    @apply hover:bg-primary-hover transition-all duration-300 hover:shadow-lg hover:scale-105;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary px-6 py-3 rounded-lg font-medium;
+    @apply hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105;
+  }
+
+  .btn-ghost {
+    @apply text-muted-foreground px-6 py-3 rounded-lg font-medium;
+    @apply hover:text-foreground hover:bg-muted transition-all duration-300;
+  }
+}
