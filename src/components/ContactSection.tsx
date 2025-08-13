@@ -119,10 +119,26 @@ export function ContactSection() {
               <Button
                 type="submit"
                 className="w-full btn-primary"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.open('mailto:parambrataghosh26@gmail.com?subject=Portfolio Contact', '_blank');
-                }}
+                onClick={async (e) => {
+    e.preventDefault();
+    const name = (document.getElementById("name") as HTMLInputElement).value;
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const subject = (document.getElementById("subject") as HTMLInputElement).value;
+    const message = (document.getElementById("message") as HTMLTextAreaElement).value;
+
+    try {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbypQIdEK-Xs6B7b3dWttdo73NUKr6NRI7NHDMy9r4rWeYbVdM8fxaiU6uL3bsYqPLd8/exec", {
+        method: "POST",
+        mode: "no-cors", // avoid CORS issues
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+      alert("Message sent successfully!");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send message.");
+    }
+  }}
               >
                 Send Message
               </Button>
