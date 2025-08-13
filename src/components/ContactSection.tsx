@@ -129,7 +129,7 @@ export function ContactSection() {
     try {
       const res = await fetch("https://script.google.com/macros/s/AKfycbypQIdEK-Xs6B7b3dWttdo73NUKr6NRI7NHDMy9r4rWeYbVdM8fxaiU6uL3bsYqPLd8/exec", {
         method: "POST",
-        mode: "no-cors", // avoid CORS issues
+        // mode: "no-cors", // avoid CORS issues
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, subject, message }),
       });
