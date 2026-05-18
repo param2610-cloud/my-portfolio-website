@@ -1,5 +1,4 @@
 import { Navigation } from "@/components/Navigation";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { HeroSection } from "@/components/HeroSection";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
@@ -13,7 +12,6 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <ThemeToggle />
 
       <main>
         <HeroSection />

@@ -5,12 +5,12 @@ import bannerBg from "@/assets/banner.png";
 
 export function HeroSection() {
   return (
-    <section 
-      id="hero" 
+    <section
+      id="hero"
       className="relative min-h-screen flex items-center px-6 overflow-hidden"
     >
       {/* Background Image Setup */}
-      <div 
+      <div
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `url(${bannerBg})`,
@@ -23,7 +23,7 @@ export function HeroSection() {
         <div className="absolute inset-0 md:hidden bg-[#0c1619]/90 backdrop-blur-[4px] z-0" />
 
         {/* Desktop Overlay (Beautiful fading gradient glassmorphism with a customized deep navy-forest tint that harmonizes with your shirt and the trees) */}
-        <div 
+        <div
           className="hidden md:block absolute inset-0 bg-gradient-to-r from-[#0a1215]/75 via-[#0a1215]/40 to-transparent z-0"
           style={{
             backdropFilter: 'blur(8px)',
@@ -40,7 +40,7 @@ export function HeroSection() {
       <div className="container mx-auto z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full pt-24 pb-12 md:py-0">
         {/* Left side content */}
         <div className="md:col-span-8 lg:col-span-7 flex flex-col items-start text-left animate-fade-in duration-1000">
-          
+
           {/* Mobile Profile Photo (optional, showing on mobile only since background handles desktop) */}
           <div className="md:hidden w-24 h-24 mb-6 rounded-full overflow-hidden border-2 border-primary/50 shadow-xl animate-fade-in">
             <img
@@ -61,9 +61,9 @@ export function HeroSection() {
 
           <div className="max-w-xl mb-8 fade-in-delayed">
             <p className="text-lg md:text-xl text-foreground/90 leading-relaxed font-medium drop-shadow-sm">
-              Detail-oriented Software Engineer experienced in full-stack web development 
-              with a strong portfolio of SaaS, AI, and geospatial projects. Proven leadership 
-              in hackathons and internship settings. Skilled in React, Node.js, Python, 
+              Detail-oriented Software Engineer experienced in full-stack web development
+              with a strong portfolio of SaaS, AI, and geospatial projects. Proven leadership
+              in hackathons and internship settings. Skilled in React, Node.js, Python,
               PostgreSQL, and cloud-native architectures.
             </p>
           </div>

@@ -1,8 +1,8 @@
 import { GraduationCap, Award, BookOpen, Trophy } from "lucide-react";
 
 const education = {
-  degree: "Bachelor of Technology in Computer Science & Engineering",
-  institution: "Dr. Sudhir Chandra Sur Institute of Technology and Sports Complex – JIS Group, Kolkata",
+  degree: "B.Tech in Computer Science & Engineering",
+  institution: "Dr. Sudhir Chandra Sur Institute of Technology – JIS Group, Kolkata",
   gpa: "8.218/10.00",
   period: "June 2022 – June 2026",
   secondary: "Sri Ramkrishna Sikshalaya, Howrah",
@@ -15,23 +15,23 @@ const education = {
 const achievements = [
   {
     title: "Smart India Hackathon 2024 Finalist",
-    description: "Technical Leader on SIH1625 problem, selected as one of five finalists from 500 submissions",
-    icon: <Trophy className="w-5 h-5" />
+    description: "Technical Leader on SIH1625 problem, top 5 finalist from 500+ submissions.",
+    icon: <Trophy className="w-5 h-5 text-amber-500" />
   },
   {
     title: "Project Published in Book",
-    description: "IoT-based motion detection system, ISBN 978-81-983133-1-7, pages 1-7",
-    icon: <BookOpen className="w-5 h-5" />
+    description: "IoT-based motion detection system (ISBN 978-81-983133-1-7, pages 1-7).",
+    icon: <BookOpen className="w-5 h-5 text-amber-500" />
   },
   {
     title: "Tech Fest Winner",
-    description: "DevRush event with team Hexabytes",
-    icon: <Award className="w-5 h-5" />
+    description: "DevRush event champion with team Hexabytes.",
+    icon: <Award className="w-5 h-5 text-amber-500" />
   },
   {
     title: "Hack4Bengal Participant",
-    description: "3.0: NutriLens AI nutrition scanner; 4.0: LegalLink AI legal aid",
-    icon: <Trophy className="w-5 h-5" />
+    description: "Built NutriLens AI scanner (v3.0) & LegalLink AI legal aid (v4.0).",
+    icon: <Trophy className="w-5 h-5 text-amber-500" />
   }
 ];
 
@@ -39,96 +39,94 @@ const certificates = [
   "Programming in Python (Meta)",
   "Database Management System (NPTEL)",
   "AI Agent Architect (IBM)",
-  "Linux Command-Line & Shell Scripting"
+  "Linux Command-Line & Scripting"
 ];
 
 export function EducationSection() {
   return (
-    <section id="education" className="py-20 px-6">
-      <div className="container max-w-6xl mx-auto">
-        <h2 className="section-heading animate-fade-in">Education & Achievements</h2>
+    <section id="education" className="py-24 px-6 relative bg-[#0f0a07] border-t border-[#1e150f]">
+      
+      {/* Subtle texture background */}
+      <div className="absolute inset-0 opacity-[0.1] pointer-events-none" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/dark-matter.png")' }}></div>
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-900/10 blur-[100px] rounded-full pointer-events-none -translate-x-1/2 translate-y-1/2"></div>
+      
+      <div className="container max-w-6xl mx-auto relative z-10">
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Education */}
-          <div className="card-hover p-8 rounded-xl border border-border/50 animate-fade-in">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="bg-primary/10 p-3 rounded-lg text-primary">
-                <GraduationCap className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-semibold gradient-text">Education</h3>
-            </div>
+        <div className="flex flex-col items-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight text-center drop-shadow-md font-serif">
+            Academic Archives
+          </h2>
+          <div className="w-24 h-1 bg-amber-600/50 mt-6 rounded-full"></div>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          
+          {/* Left Column: Education Credentials */}
+          <div className="flex flex-col gap-6">
+            <h3 className="text-xl font-bold tracking-[0.2em] uppercase text-[#e9a949] font-serif mb-2">Credentials</h3>
             
-            <div className="space-y-6">
-              <div className="border-l-2 border-primary/30 pl-6">
-                <h4 className="font-semibold text-lg mb-2">{education.degree}</h4>
-                <p className="text-muted-foreground mb-2">{education.institution}</p>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-muted-foreground">{education.period}</span>
-                  <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
-                    GPA: {education.gpa}
-                  </span>
-                </div>
+            <div className="bg-[#16110d] border border-[#3e3025] rounded-sm p-8 shadow-[5px_5px_15px_rgba(0,0,0,0.5)] transition-transform hover:-translate-y-1 duration-300 relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-10">
+                <GraduationCap className="w-24 h-24 text-amber-500" />
               </div>
               
-              <div className="border-l-2 border-muted pl-6">
-                <h4 className="font-medium mb-2">{education.secondary}</h4>
-                <div className="text-sm text-muted-foreground space-y-1">
-                  <p>Secondary: {education.secondaryScores.secondary}</p>
-                  <p>Higher Secondary: {education.secondaryScores.higherSecondary}</p>
+              <div className="relative z-10 space-y-8">
+                <div className="border-l-2 border-[#e9a949]/50 pl-6">
+                  <h4 className="text-2xl font-bold text-white mb-2">{education.degree}</h4>
+                  <p className="text-[#a89988] mb-4 text-sm leading-relaxed">{education.institution}</p>
+                  <div className="flex flex-wrap gap-4 items-center font-mono text-xs">
+                    <span className="text-[#a89988] tracking-widest">{education.period}</span>
+                    <span className="bg-[#241c16] text-[#e9a949] px-3 py-1 rounded-sm border border-[#473527]">
+                      GPA: {education.gpa}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="border-l-2 border-[#3e3025] pl-6">
+                  <h4 className="text-lg font-bold text-white/80 mb-2">{education.secondary}</h4>
+                  <div className="font-mono text-xs text-[#736353] space-y-2">
+                    <p>SECONDARY: <span className="text-[#a89988]">{education.secondaryScores.secondary}</span></p>
+                    <p>HIGHER SECONDARY: <span className="text-[#a89988]">{education.secondaryScores.higherSecondary}</span></p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Achievements */}
-          <div className="card-hover p-8 rounded-xl border border-border/50 fade-in-delayed">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="bg-primary/10 p-3 rounded-lg text-primary">
-                <Award className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-semibold gradient-text">Achievements</h3>
-            </div>
-            
-            <div className="space-y-4">
-              {achievements.map((achievement, index) => (
-                <div
-                  key={achievement.title}
-                  className="flex items-start space-x-3 animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="text-primary mt-1">{achievement.icon}</div>
-                  <div>
-                    <h4 className="font-medium mb-1">{achievement.title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {achievement.description}
-                    </p>
-                  </div>
+            {/* Certifications Block inside Left Column */}
+            <h3 className="text-xl font-bold tracking-[0.2em] uppercase text-[#e9a949] font-serif mt-6 mb-2">Certifications</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {certificates.map((cert) => (
+                <div key={cert} className="bg-[#16110d] border border-[#30241b] p-4 rounded-sm shadow-inner flex items-center space-x-3 group hover:border-[#4e3a2b] transition-colors">
+                  <BookOpen className="w-4 h-4 text-[#e9a949] opacity-50 group-hover:opacity-100 transition-opacity" />
+                  <span className="text-sm font-medium text-[#dcd0c2]">{cert}</span>
                 </div>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Certificates */}
-        <div className="mt-8 card-hover p-8 rounded-xl border border-border/50 fade-in-delayed">
-          <div className="flex items-center space-x-3 mb-6">
-            <div className="bg-primary/10 p-3 rounded-lg text-primary">
-              <BookOpen className="w-6 h-6" />
+          {/* Right Column: Honors & Awards */}
+          <div className="flex flex-col gap-6">
+            <h3 className="text-xl font-bold tracking-[0.2em] uppercase text-[#e9a949] font-serif mb-2">Honors & Awards</h3>
+            
+            <div className="bg-[#16110d] border border-[#3e3025] rounded-sm p-8 shadow-[5px_5px_15px_rgba(0,0,0,0.5)] h-full">
+              <div className="space-y-6">
+                {achievements.map((achievement, idx) => (
+                  <div key={idx} className="flex items-start space-x-4 border-b border-[#30241b] pb-6 last:border-0 last:pb-0">
+                    <div className="bg-[#241c16] p-3 rounded-sm border border-[#473527] shadow-inner mt-1">
+                      {achievement.icon}
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-white mb-2">{achievement.title}</h4>
+                      <p className="text-[#a89988] text-sm leading-relaxed">
+                        {achievement.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <h3 className="text-xl font-semibold gradient-text">Certifications</h3>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {certificates.map((certificate, index) => (
-              <div
-                key={certificate}
-                className="bg-muted/50 p-4 rounded-lg border border-border/30 hover:bg-muted/70 transition-colors duration-300 animate-fade-in"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                <p className="font-medium text-sm">{certificate}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

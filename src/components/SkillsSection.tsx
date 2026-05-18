@@ -1,87 +1,108 @@
 import { 
-  Code, 
-  Globe, 
-  Server, 
-  Database, 
-  Terminal, 
-  Package, 
-  Cloud, 
-  Users 
+  Code, Globe, Server, Database, Terminal, Package, Cloud, Users 
 } from "lucide-react";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
-const skillCategories = [
-  {
-    title: "Languages",
-    icon: <Code className="w-5 h-5" />,
-    skills: ["Python", "Java", "C", "JavaScript", "TypeScript", "SQL"]
-  },
-  {
-    title: "Frontend",
-    icon: <Globe className="w-5 h-5" />,
-    skills: ["React", "Next.js", "HTML5", "CSS3", "Tailwind CSS"]
-  },
-  {
-    title: "Backend",
-    icon: <Server className="w-5 h-5" />,
-    skills: ["Node.js", "Express.js", "FastAPI", "ASP.NET", ".NET Framework"]
-  },
-  {
-    title: "Databases",
-    icon: <Database className="w-5 h-5" />,
-    skills: ["PostgreSQL", "MySQL", "MongoDB"]
-  },
-  {
-    title: "Tools & DevOps",
-    icon: <Terminal className="w-5 h-5" />,
-    skills: ["Git", "Shell Scripting", "Vite", "ESLint", "Linux CLI"]
-  },
-  {
-    title: "Libraries",
-    icon: <Package className="w-5 h-5" />,
-    skills: ["Prisma", "NumPy", "Pandas", "Scikit-Learn", "OpenCV", "Matplotlib"]
-  },
-  {
-    title: "Cloud & Platforms",
-    icon: <Cloud className="w-5 h-5" />,
-    skills: ["AWS basic", "Cloudinary", "Firebase"]
-  },
-  {
-    title: "Soft Skills",
-    icon: <Users className="w-5 h-5" />,
-    skills: ["Technical Leadership", "Project Architecture", "Team Management", "Agile"]
-  }
+const allSkills = [
+  { name: "Python", category: "Language", icon: <Code className="w-8 h-8"/>, color: "#3776AB", exp: "3+ years", details: "Extensive experience in backend API development, data processing, and scripting. Built multiple RESTful APIs and automation tools." },
+  { name: "JavaScript", category: "Language", icon: <Code className="w-8 h-8"/>, color: "#F7DF1E", exp: "4+ years", details: "Core language for frontend development. Deep understanding of ES6+, asynchronous programming, and DOM manipulation." },
+  { name: "TypeScript", category: "Language", icon: <Code className="w-8 h-8"/>, color: "#3178C6", exp: "3 years", details: "Primary choice for robust frontend and backend codebases. Experienced with complex type definitions and generics." },
+  { name: "React", category: "Frontend", icon: <Globe className="w-8 h-8"/>, color: "#61DAFB", exp: "4 years", details: "Expert in building complex single-page applications. Proficient with React Hooks, Context API, and performance optimization." },
+  { name: "Next.js", category: "Frontend", icon: <Globe className="w-8 h-8"/>, color: "#ffffff", exp: "2 years", details: "Experience building server-rendered and statically generated applications. Skilled in App Router and API routes." },
+  { name: "Tailwind", category: "Frontend", icon: <Globe className="w-8 h-8"/>, color: "#06B6D4", exp: "3 years", details: "Go-to styling solution. Efficient in creating responsive, accessible, and maintainable UI components." },
+  { name: "Node.js", category: "Backend", icon: <Server className="w-8 h-8"/>, color: "#339933", exp: "3+ years", details: "Used for building scalable network applications. Experienced with Express.js, middleware, and async flows." },
+  { name: "PostgreSQL", category: "Database", icon: <Database className="w-8 h-8"/>, color: "#4169E1", exp: "3 years", details: "Primary relational database choice. Skilled in complex querying, indexing, and schema design." },
+  { name: "MongoDB", category: "Database", icon: <Database className="w-8 h-8"/>, color: "#47A248", exp: "2 years", details: "Used in various MERN stack projects for flexible, document-based data storage." },
+  { name: "Git", category: "Tools", icon: <Terminal className="w-8 h-8"/>, color: "#F05032", exp: "4+ years", details: "Proficient in version control, branching strategies, and collaborative workflows." },
+  { name: "AWS", category: "Cloud", icon: <Cloud className="w-8 h-8"/>, color: "#FF9900", exp: "1+ years", details: "Familiar with core services like EC2, S3, and RDS for deploying and scaling web applications." },
+  { name: "Prisma", category: "Tools", icon: <Package className="w-8 h-8"/>, color: "#ffffff", exp: "2 years", details: "Used as ORM for type-safe database access in Next.js and Node.js applications." },
 ];
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-20 px-6 bg-muted/30">
-      <div className="container max-w-6xl mx-auto">
-        <h2 className="section-heading animate-fade-in">Skills & Expertise</h2>
+    <section 
+      id="skills" 
+      className="relative min-h-screen py-24 px-6 overflow-hidden flex items-center justify-center shadow-[inset_0_0_50px_rgba(0,0,0,0.8)]"
+      style={{
+        backgroundImage: `url(/wood_wall.png)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Warm late afternoon sunlight overlay on the wood wall */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-amber-900/20 via-orange-600/5 to-transparent z-0"></div>
+      
+      {/* Sunbeam effect */}
+      <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-300/15 via-transparent to-transparent pointer-events-none z-0"></div>
+
+      <div className="container max-w-6xl mx-auto z-10 relative">
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-extrabold text-white mb-4 drop-shadow-xl tracking-tight">
+            My <span className="text-sky-400">Armory</span>
+          </h2>
+          <p className="text-white/80 max-w-2xl mx-auto text-lg drop-shadow-md">
+            Hover over each mounted plaque to see my experience and knowledge across different technologies.
+          </p>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillCategories.map((category, categoryIndex) => (
-            <div
-              key={category.title}
-              className="card-hover p-6 rounded-xl border border-border/50 animate-fade-in"
-              style={{ animationDelay: `${categoryIndex * 0.1}s` }}
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="text-primary">{category.icon}</div>
-                <h3 className="font-semibold text-lg">{category.title}</h3>
-              </div>
-              
-              <div className="space-y-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <div
-                    key={skill}
-                    className="skill-badge text-xs"
-                    style={{ animationDelay: `${(categoryIndex * 0.1) + (skillIndex * 0.05)}s` }}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-8 justify-items-center">
+          {allSkills.map((skill, index) => (
+            <HoverCard key={skill.name} openDelay={100} closeDelay={100}>
+              <HoverCardTrigger asChild>
+                <div 
+                  className="group relative cursor-pointer flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 rounded-xl transition-all duration-300 hover:scale-110 hover:-translate-y-2 z-10"
+                  style={{ 
+                    animationDelay: `${index * 0.1}s`,
+                    background: 'linear-gradient(145deg, rgba(30,30,30,0.9), rgba(15,15,15,0.9))',
+                    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.1)',
+                    border: '1px solid rgba(255,255,255,0.05)'
+                  }}
+                >
+                  {/* Subtle inner glow matching the skill color */}
+                  <div 
+                    className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                    style={{ background: `radial-gradient(circle at center, ${skill.color}, transparent)` }}
+                  ></div>
+                  
+                  <div 
+                    className="mb-3 transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                    style={{ color: skill.color }}
                   >
-                    {skill}
+                    {skill.icon}
                   </div>
-                ))}
-              </div>
-            </div>
+                  <h3 className="font-bold text-white/90 text-sm tracking-wide text-center">
+                    {skill.name}
+                  </h3>
+                </div>
+              </HoverCardTrigger>
+              <HoverCardContent 
+                side="top"
+                className="w-80 bg-[#111827]/95 backdrop-blur-xl border-white/10 shadow-2xl rounded-xl p-5 text-white z-50 animate-in zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
+              >
+                <div className="flex justify-between items-start mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-black/50" style={{ color: skill.color }}>
+                      {skill.icon}
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold">{skill.name}</h4>
+                      <p className="text-xs text-sky-400 font-medium uppercase tracking-wider">{skill.category}</p>
+                    </div>
+                  </div>
+                  <div className="bg-white/10 px-2 py-1 rounded text-xs font-semibold whitespace-nowrap">
+                    {skill.exp}
+                  </div>
+                </div>
+                <p className="text-sm text-white/70 leading-relaxed">
+                  {skill.details}
+                </p>
+              </HoverCardContent>
+            </HoverCard>
           ))}
         </div>
       </div>
