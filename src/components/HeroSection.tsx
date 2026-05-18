@@ -61,10 +61,9 @@ export function HeroSection() {
 
           <div className="max-w-xl mb-8 fade-in-delayed">
             <p className="text-lg md:text-xl text-foreground/90 leading-relaxed font-medium drop-shadow-sm">
-              Detail-oriented Software Engineer experienced in full-stack web development
-              with a strong portfolio of SaaS, AI, and geospatial projects. Proven leadership
-              in hackathons and internship settings. Skilled in React, Node.js, Python,
-              PostgreSQL, and cloud-native architectures.
+              Backend & Distributed Systems engineer with production experience across AI, IoT,
+              and SaaS platforms. Built real-time pipelines, microservices, and cloud-native systems
+              from scratch. Smart India Hackathon Finalist and Amazon ML Summer School participant.
             </p>
           </div>
 
