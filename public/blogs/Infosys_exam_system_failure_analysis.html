@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When 10,000 Students Hit Start at the Same Second</title>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:        #1A1A18;
+            --ink-2:      #4A4A46;
+            --ink-3:      #8A8A84;
+            --paper:      #FAFAF7;
+            --rule:       #E4E4DF;
+            --rule-2:     #D0D0CA;
+            --blue:       #1B3A8C;
+            --blue-soft:  #EBF0FC;
+            --red:        #B91C1C;
+            --red-soft:   #FEF2F2;
+            --green:      #0A6644;
+            --green-soft: #EDFAF4;
+            --amber:      #92400E;
+            --amber-soft: #FFFBEB;
+            --code-bg:    #F2F2EE;
+            --code-dark:  #1C1C1A;
+        }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            line-height: 1.78;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 72px 36px 120px;
+        }
+
+        h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 36px;
+            line-height: 1.2;
+            font-weight: normal;
+            letter-spacing: -0.4px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 24px;
+            font-weight: normal;
+            letter-spacing: -0.2px;
+            color: var(--ink);
+            margin: 60px 0 14px;
+            padding-top: 16px;
+            border-top: 1.5px solid var(--rule);
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ink);
+            margin: 32px 0 10px;
+        }
+
+        p { margin-bottom: 16px; }
+        p:last-child { margin-bottom: 0; }
+        strong { font-weight: 600; }
+        em { font-style: italic; }
+        a { color: var(--blue); text-decoration: underline; }
+
+        .header {
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1.5px solid var(--rule);
+        }
+
+        .header-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+            background: var(--blue-soft);
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 22px;
+        }
+
+        .header-sub {
+            font-size: 20px;
+            color: var(--ink-2);
+            line-height: 1.5;
+            margin-bottom: 28px;
+            max-width: 600px;
+        }
+
+        .header-meta {
+            font-size: 13px;
+            color: var(--ink-3);
+            display: flex;
+            gap: 20px;
+        }
+
+        .fig { margin: 40px 0; }
+
+        .fig-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 10px;
+        }
+
+        .fig svg {
+            width: 100%;
+            display: block;
+            background: #F6F6F3;
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+        }
+
+        .fig-caption {
+            font-size: 13px;
+            color: var(--ink-3);
+            text-align: center;
+            margin-top: 11px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .callout {
+            padding: 18px 22px;
+            border-radius: 6px;
+            margin: 28px 0;
+            font-size: 15.5px;
+            line-height: 1.65;
+        }
+        .callout.red    { background: var(--red-soft);   border-left: 3px solid var(--red);   }
+        .callout.blue   { background: var(--blue-soft);  border-left: 3px solid var(--blue);  }
+        .callout.green  { background: var(--green-soft); border-left: 3px solid var(--green); }
+        .callout.amber  { background: var(--amber-soft); border-left: 3px solid #D97706;      }
+
+        .callout-tag {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+        .callout.red   .callout-tag { color: var(--red);   }
+        .callout.blue  .callout-tag { color: var(--blue);  }
+        .callout.green .callout-tag { color: var(--green); }
+        .callout.amber .callout-tag { color: var(--amber); }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13.5px;
+            background: var(--code-bg);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        pre {
+            background: var(--code-dark);
+            color: #D4D4C8;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            line-height: 1.65;
+            padding: 20px 24px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+        pre .c { color: #6A9955; }
+        pre .k { color: #569CD6; }
+        pre .s { color: #CE9178; }
+
+        .tl {
+            list-style: none;
+            border-left: 2px solid var(--rule-2);
+            padding-left: 28px;
+            margin: 24px 0;
+        }
+        .tl li {
+            position: relative;
+            margin-bottom: 18px;
+            font-size: 15.5px;
+            line-height: 1.6;
+        }
+        .tl li::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--ink-3);
+            outline: 2px solid var(--rule-2);
+            outline-offset: 2px;
+        }
+        .tl li.red::before   { background: var(--red);   outline-color: var(--red);   }
+        .tl li.amber::before { background: #D97706;       outline-color: #D97706;      }
+        .tl li.green::before { background: var(--green);  outline-color: var(--green); }
+        .tl .time {
+            display: block;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--ink-3);
+            letter-spacing: 0.06em;
+            margin-bottom: 2px;
+        }
+
+        .principles { margin: 28px 0; }
+        .principle {
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin-bottom: 12px;
+            background: #FEFEFE;
+        }
+        .principle-n {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 5px;
+        }
+        .principle-h {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .principle p {
+            font-size: 14.5px;
+            color: var(--ink-2);
+            margin: 0;
+        }
+
+        .tbl {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14.5px;
+            margin: 24px 0;
+        }
+        .tbl th {
+            text-align: left;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--ink-2);
+            padding: 9px 14px;
+            background: var(--code-bg);
+            border-bottom: 1.5px solid var(--rule-2);
+        }
+        .tbl td {
+            padding: 11px 14px;
+            border-bottom: 1px solid var(--rule);
+            vertical-align: top;
+            line-height: 1.5;
+        }
+        .tbl tr:last-child td { border-bottom: none; }
+        .tbl .bad  { color: var(--red);   font-weight: 500; }
+
+        .footer {
+            margin-top: 72px;
+            padding-top: 24px;
+            border-top: 1.5px solid var(--rule);
+            font-size: 13px;
+            color: var(--ink-3);
+            line-height: 1.6;
+        }
+
+        @media print {
+            body { font-size: 15px; }
+            .page { padding: 36px 28px; }
+            .fig  { page-break-inside: avoid; }
+            pre   { page-break-inside: avoid; }
+            .principle { page-break-inside: avoid; }
+            h2 { page-break-after: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <header class="header">
+        <div class="header-tag">Incident Analysis · Distributed Systems</div>
+        <h1>When 10,000 Students Hit&nbsp;Start at the Same&nbsp;Second</h1>
+        <p class="header-sub">
+            What really broke during the Infosys Off Campus Hiring exam outage —
+            and what should have been there to stop it.
+        </p>
+        <div class="header-meta">
+            <span>May 2026</span>
+            <span>~15 min read</span>
+            <span>System Design · Post-Mortem</span>
+        </div>
+    </header>
+
+    <h2>What happened</h2>
+
+    <p>
+        On 17th May 2026, tens of thousands of students opened their laptops for
+        the exam at 10:00 AM — and the portal collapsed within seconds.
+        Not everything broke at once, and not everything broke for the same reason.
+        Here is the exact sequence.
+    </p>
+
+    <!-- Timeline diagram — appears after one scroll -->
+    <div class="fig">
+        <div class="fig-label">Figure — The incident from start to finish</div>
+        <svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="arr-tl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#C8C8C2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+                <marker id="arr-tl-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#B91C1C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+            </defs>
+
+            <!-- Time axis -->
+            <line x1="48" y1="50" x2="632" y2="50" stroke="#E4E4DF" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#8A8A84" x="60"  y="40" text-anchor="middle">9:30 AM</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#8A8A84" x="200" y="40" text-anchor="middle">10:00 AM</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#8A8A84" x="380" y="40" text-anchor="middle">10:20 AM</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#8A8A84" x="550" y="40" text-anchor="middle">10:40 AM</text>
+            <line x1="60"  y1="46" x2="60"  y2="54" stroke="#C8C8C2" stroke-width="1"/>
+            <line x1="200" y1="46" x2="200" y2="54" stroke="#C8C8C2" stroke-width="1"/>
+            <line x1="380" y1="46" x2="380" y2="54" stroke="#C8C8C2" stroke-width="1"/>
+            <line x1="550" y1="46" x2="550" y2="54" stroke="#C8C8C2" stroke-width="1"/>
+
+            <!-- Phase 1 — green -->
+            <rect x="48" y="62" width="140" height="50" rx="6" fill="#EDFAF4" stroke="#0A6644" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#0A6644" x="118" y="82" text-anchor="middle">✓ Login works</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#0A6644" x="118" y="99" text-anchor="middle">Dashboard loads fine</text>
+
+            <line x1="188" y1="87" x2="206" y2="87" stroke="#C8C8C2" stroke-width="1.2" marker-end="url(#arr-tl)"/>
+
+            <!-- Phase 2 — amber -->
+            <rect x="206" y="62" width="162" height="50" rx="6" fill="#FFFBEB" stroke="#D97706" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#92400E" x="287" y="82" text-anchor="middle">⚠ Instruction page</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#92400E" x="287" y="99" text-anchor="middle">Blank screen · kept retrying</text>
+
+            <line x1="368" y1="87" x2="386" y2="87" stroke="#C8C8C2" stroke-width="1.2" marker-end="url(#arr-tl)"/>
+
+            <!-- Phase 3 — red -->
+            <rect x="386" y="62" width="150" height="50" rx="6" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#B91C1C" x="461" y="82" text-anchor="middle">✗ Start button</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="461" y="99" text-anchor="middle">HTTP 500 every attempt</text>
+
+            <!-- retry arrow -->
+            <path d="M536 68 Q590 36 461 56" fill="none" stroke="#B91C1C" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr-tl-r)" opacity="0.7"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="572" y="32" text-anchor="middle" opacity="0.8">retry loop ~40 min</text>
+
+            <!-- Phase 4 — recovers -->
+            <rect x="548" y="62" width="110" height="50" rx="6" fill="#EDFAF4" stroke="#0A6644" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#0A6644" x="603" y="82" text-anchor="middle">Exam opens</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#0A6644" x="603" y="99" text-anchor="middle">Code runner still failing</text>
+
+            <!-- Detail rows -->
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#4A4A46" x="48" y="140">WHAT BROKE</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#4A4A46" x="48" y="190">WHY</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#4A4A46" x="48" y="240">KEY SIGNAL</text>
+
+            <rect x="206" y="126" width="162" height="26" rx="4" fill="#FFFBEB" stroke="#D97706" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#92400E" x="287" y="143" text-anchor="middle">API never responded</text>
+            <rect x="206" y="176" width="162" height="26" rx="4" fill="#FFFBEB" stroke="#D97706" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#92400E" x="287" y="193" text-anchor="middle">Session DB hit by spike</text>
+            <rect x="206" y="226" width="162" height="26" rx="4" fill="#FFFBEB" stroke="#D97706" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#92400E" x="287" y="243" text-anchor="middle">Works fine once it loads</text>
+
+            <rect x="386" y="126" width="150" height="26" rx="4" fill="#FEF2F2" stroke="#B91C1C" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="461" y="143" text-anchor="middle">Exam session init crashed</text>
+            <rect x="386" y="176" width="150" height="26" rx="4" fill="#FEF2F2" stroke="#B91C1C" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="461" y="193" text-anchor="middle">DB write rejected under load</text>
+            <rect x="386" y="226" width="150" height="26" rx="4" fill="#FEF2F2" stroke="#B91C1C" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="461" y="243" text-anchor="middle">Server replied: "I failed"</text>
+
+            <rect x="548" y="126" width="110" height="26" rx="4" fill="#FEF2F2" stroke="#B91C1C" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="603" y="143" text-anchor="middle">Code runner errors</text>
+            <rect x="548" y="176" width="110" height="26" rx="4" fill="#FEF2F2" stroke="#B91C1C" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="603" y="193" text-anchor="middle">Execution pool empty</text>
+            <rect x="548" y="226" width="110" height="26" rx="4" fill="#FEF2F2" stroke="#B91C1C" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="603" y="243" text-anchor="middle">29 of 30 runs failed</text>
+
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#8A8A84" font-style="italic" x="340" y="285" text-anchor="middle">Login never had a problem. The failure started the moment the backend got hit at exactly 10:00 AM.</text>
+        </svg>
+        <p class="fig-caption">Three separate failures, each with a different cause and a different fix.</p>
+    </div>
+
+    <h3>Phase 1 — Login (9:30–10:00 AM): no problems</h3>
+    <p>
+        Students who logged in early had no issues. The dashboard worked, the exam
+        card showed up, everything looked normal. This is an important clue —
+        it means the portal itself was fine. Only the backend services behind it broke.
+    </p>
+
+    <h3>Phase 2 — Instruction page (10:00–10:40 AM): blank screen</h3>
+    <p>
+        At exactly 10:00 AM, everyone clicked the exam card at the same moment.
+        The page URL changed — which means the server received the request — but
+        nothing loaded. Just a frozen progress bar and a greyed-out Start button.
+    </p>
+    <p>
+        After 4–5 retries it eventually loaded for some people. Importantly,
+        <strong>once it loaded, it worked perfectly.</strong> The problem was not
+        the instruction page — it was the server buckling under thousands of
+        simultaneous requests the moment the clock hit 10:00.
+    </p>
+
+    <h3>Phase 3 — The Start button: error every single time</h3>
+    <p>
+        After finishing the instruction steps and clicking Start, students got a
+        branded error screen: <em>"Internal server error."</em> This is not a slow
+        connection. The server replied — it just said it crashed trying to
+        create the exam session. Students were stuck in a loop for nearly 40 minutes.
+    </p>
+    <div class="callout red">
+        <div class="callout-tag">Timeout vs. HTTP 500 — quick version</div>
+        A <strong>timeout</strong> = the server went quiet and never replied.<br>
+        An <strong>HTTP 500</strong> = the server replied and said "something crashed on my end."<br>
+        The difference matters because a 500 tells you exactly where to look: something
+        in the application broke, not the network.
+    </div>
+
+    <h3>Phase 4 — During the exam: code runner almost always failing</h3>
+    <p>
+        Even after getting in, the trouble continued. Clicking Execute on a coding
+        question returned the same server error — instantly, not after a wait.
+        Out of roughly 30 attempts, only about one completed successfully.
+        Some runs got 12 of 16 test cases done, then crashed on the rest.
+        The server was alive, but out of capacity — most requests got rejected
+        the moment they arrived.
+    </p>
+
+    <!-- Figure 1 — user-provided, inserted verbatim -->
+    <div class="fig">
+        <div class="fig-label">Figure 1 — The full incident in one view</div>
+        <svg viewBox="0 0 680 452" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="arr-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#C8C8C2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+                <marker id="arr-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#B91C1C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+            </defs>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#9A9A94" x="108" y="30" text-anchor="middle">10:00 AM</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#9A9A94" x="263" y="30" text-anchor="middle">10:10 AM</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#9A9A94" x="418" y="30" text-anchor="middle">10:20 AM</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#9A9A94" x="573" y="30" text-anchor="middle">10:40 AM</text>
+            <line x1="60" y1="38" x2="630" y2="38" stroke="#E5E5E0" stroke-width="1"/>
+            <line x1="108" y1="34" x2="108" y2="42" stroke="#C8C8C2" stroke-width="1"/>
+            <line x1="263" y1="34" x2="263" y2="42" stroke="#C8C8C2" stroke-width="1"/>
+            <line x1="418" y1="34" x2="418" y2="42" stroke="#C8C8C2" stroke-width="1"/>
+            <line x1="573" y1="34" x2="573" y2="42" stroke="#C8C8C2" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#5C5C58" letter-spacing="0.08em" x="40" y="68">STUDENT</text>
+            <rect x="60" y="76" width="100" height="50" rx="6" fill="#EDFAF5" stroke="#0F6E56" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#0F6E56" x="110" y="97" text-anchor="middle" dominant-baseline="central">Login</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#0F6E56" x="110" y="114" text-anchor="middle" dominant-baseline="central">Clicks exam card</text>
+            <line x1="160" y1="101" x2="178" y2="101" stroke="#C8C8C2" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+            <rect x="178" y="76" width="110" height="50" rx="6" fill="#FFFBEB" stroke="#D97706" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#92400E" x="233" y="97" text-anchor="middle" dominant-baseline="central">Skeleton screen</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#92400E" x="233" y="114" text-anchor="middle" dominant-baseline="central">Page never loads</text>
+            <line x1="288" y1="101" x2="306" y2="101" stroke="#C8C8C2" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+            <rect x="306" y="76" width="110" height="50" rx="6" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#B91C1C" x="361" y="97" text-anchor="middle" dominant-baseline="central">"Something</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#B91C1C" x="361" y="114" text-anchor="middle" dominant-baseline="central">went wrong"</text>
+            <path d="M416 82 Q470 50 361 68" fill="none" stroke="#B91C1C" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr-red)" opacity="0.7"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="450" y="50" text-anchor="middle" opacity="0.8">retry loop</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="450" y="62" text-anchor="middle" opacity="0.8">~40 min</text>
+            <line x1="416" y1="101" x2="510" y2="101" stroke="#C8C8C2" stroke-width="1" stroke-dasharray="5 4"/>
+            <rect x="510" y="76" width="110" height="50" rx="6" fill="#EDFAF5" stroke="#0F6E56" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#0F6E56" x="565" y="97" text-anchor="middle" dominant-baseline="central">Exam opens</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#0F6E56" x="565" y="114" text-anchor="middle" dominant-baseline="central">10:40 AM</text>
+            <line x1="40" y1="148" x2="640" y2="148" stroke="#E5E5E0" stroke-width="1" stroke-dasharray="6 4"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#5C5C58" letter-spacing="0.08em" x="40" y="172">SYSTEM</text>
+            <rect x="60" y="180" width="130" height="50" rx="6" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#B91C1C" x="125" y="200" text-anchor="middle" dominant-baseline="central">~10k requests</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#B91C1C" x="125" y="217" text-anchor="middle" dominant-baseline="central">hit at same second</text>
+            <line x1="190" y1="205" x2="208" y2="205" stroke="#C8C8C2" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+            <rect x="208" y="180" width="120" height="50" rx="6" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#B91C1C" x="268" y="200" text-anchor="middle" dominant-baseline="central">DB saturates</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#B91C1C" x="268" y="217" text-anchor="middle" dominant-baseline="central">1ms → 10s latency</text>
+            <line x1="328" y1="205" x2="346" y2="205" stroke="#C8C8C2" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+            <rect x="346" y="180" width="120" height="50" rx="6" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#B91C1C" x="406" y="200" text-anchor="middle" dominant-baseline="central">Timeouts fire</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#B91C1C" x="406" y="217" text-anchor="middle" dominant-baseline="central">clients retry</text>
+            <line x1="466" y1="205" x2="484" y2="205" stroke="#C8C8C2" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+            <rect x="484" y="180" width="126" height="50" rx="6" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#B91C1C" x="547" y="200" text-anchor="middle" dominant-baseline="central">Load doubles</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#B91C1C" x="547" y="217" text-anchor="middle" dominant-baseline="central">10× → 20× → 40×</text>
+            <path d="M610 186 Q648 155 547 172" fill="none" stroke="#B91C1C" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr-red)" opacity="0.65"/>
+            <line x1="233" y1="126" x2="233" y2="148" stroke="#E5E5E0" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <line x1="233" y1="148" x2="268" y2="148" stroke="#E5E5E0" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <line x1="268" y1="148" x2="268" y2="180" stroke="#E5E5E0" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <rect x="40" y="258" width="600" height="58" rx="8" fill="#1E1E1A" stroke="none"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#FAFAF8" x="340" y="279" text-anchor="middle" dominant-baseline="central">Root cause: the thundering herd problem</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#9A9A94" x="340" y="298" text-anchor="middle" dominant-baseline="central">One slot time trained thousands of students to hit "start" at the exact same second — synchronized, not just high, traffic.</text>
+            <line x1="40" y1="340" x2="640" y2="340" stroke="#E5E5E0" stroke-width="1" stroke-dasharray="6 4"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#5C5C58" letter-spacing="0.08em" x="40" y="362">EMAIL CHAOS</text>
+            <rect x="60" y="370" width="140" height="50" rx="6" fill="#FFFBEB" stroke="#D97706" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#92400E" x="130" y="390" text-anchor="middle" dominant-baseline="central">Event A queued</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#92400E" x="130" y="407" text-anchor="middle" dominant-baseline="central">"11 AM today" — sent first (inferred ~10:30 AM)</text>
+            <line x1="200" y1="395" x2="222" y2="395" stroke="#C8C8C2" stroke-width="1.2" marker-end="url(#arr-gray)"/>
+            <rect x="222" y="370" width="150" height="50" rx="6" fill="#FFFBEB" stroke="#D97706" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#92400E" x="297" y="390" text-anchor="middle" dominant-baseline="central">Event B queued</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#92400E" x="297" y="407" text-anchor="middle" dominant-baseline="central">"May 24" (sent second)</text>
+            <path d="M372 380 Q430 345 466 374" fill="none" stroke="#B91C1C" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr-red)" opacity="0.75"/>
+            <path d="M372 410 Q430 445 466 406" fill="none" stroke="#B91C1C" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr-red)" opacity="0.75"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#9A9A94" x="419" y="396" text-anchor="middle">no ordering</text>
+            <rect x="466" y="360" width="164" height="70" rx="6" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#B91C1C" x="548" y="378" text-anchor="middle" dominant-baseline="central">B arrives ~2:30 PM (reported)</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#B91C1C" x="548" y="396" text-anchor="middle" dominant-baseline="central">A arrives ~3:30 PM (reported)</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#9A9A94" x="548" y="414" text-anchor="middle" dominant-baseline="central">Sent second, arrived first — verified by student</text>
+        </svg>
+        <p class="fig-caption">
+            Three rows, three independent failures: student experience (top), system collapse (middle), email disorder (bottom).
+        </p>
+    </div>
+
+    <p>
+        On top of all this, the post-incident communication made things worse.
+        Students received a reschedule for "11 AM today" — at 3:30 in the afternoon.
+        They had already received a different email at 2:30 PM saying the exam was
+        moving to May 24. The second email arrived before the first.
+        Both referred to times that had already passed.
+    </p>
+
+    <p>
+        Three distinct failures. Different causes. Different fixes.
+        The rest of this post goes through each one precisely.
+    </p>
+
+
+    <!-- ── SECTION 2: TRAFFIC FAILURE ── -->
+    <h2>Failure 1 — The spike was synchronized, not just large</h2>
+
+    <p>
+        Imagine standing at the start line of a race. The gun fires.
+        Everyone runs at once. Now imagine 10,000 people trying to walk through
+        the same door at the same millisecond. That is not a traffic problem.
+        That is a physics problem.
+    </p>
+
+    <p>
+        This is the distinction that most post-mortems miss:
+    </p>
+
+    <div class="callout red">
+        <div class="callout-tag">High traffic vs. synchronized traffic</div>
+        <strong>High traffic</strong> is thousands of students spread across 30 minutes.
+        Five arrive per second, then ten, then twenty. Servers absorb it gradually.
+        You can watch the curve and scale to meet it.<br><br>
+        <strong>Synchronized traffic</strong> is those same students at exactly 10:00:00 AM.
+        All of them hit the database in the same 200-millisecond window.
+        There is no gradual curve. There is a wall.<br><br>
+        Infosys's exam design created this wall on purpose — one slot time
+        for everyone, a 30-minute window that trained students to log in the
+        moment the clock changed.
+    </div>
+
+    <h3>How retrying turned a spike into a flood</h3>
+
+    <p>
+        The portal had a 5-second client timeout. When a request took longer
+        than that, the browser showed an error and invited the student to try again.
+        Every student did — immediately. Each retry was a new request added on
+        top of requests still queued and waiting. A server already struggling
+        under 10× its normal load now received those same requests again.
+        Then again. The load did not stay at 10×. It compounded.
+        The system spent all its capacity accepting requests it could never finish.
+    </p>
+
+    <p>
+        This is why the portal did not just slow down. It stayed broken for
+        40 minutes. Every student hitting the retry button was unknowingly
+        making the situation worse for everyone else in the queue.
+    </p>
+
+    <h3>What the architecture likely looked like — and why it amplified the problem</h3>
+
+    <p>
+        We do not have Infosys's internal architecture diagrams. But we can
+        make a well-grounded inference. A platform at this scale — serving
+        thousands of concurrent exam sessions, running a proctoring layer,
+        executing code, managing timers — almost certainly runs on
+        a distributed, service-based architecture. The nginx reverse proxy
+        visible at <code>rec-test.infosys.com</code> is consistent with
+        multiple backend services sitting behind a single entry point.
+        The fact that the instruction pages loaded fine while the session-start
+        endpoint returned HTTP 500s points to separate services for separate concerns.
+    </p>
+
+    <p>
+        What the symptoms tell us is not that microservices were the wrong choice —
+        they were almost certainly the right one at this scale. The problem was
+        that those services were connected <em>synchronously</em>, without any
+        mechanism to stop a slow service from freezing the ones above it.
+        One click on "Start Exam" likely triggered a chain like this:
+    </p>
+
+    <!-- Figure 2: Problem — cascading failure -->
+    <div class="fig">
+        <div class="fig-label">Figure 2 — One slow database froze every service above it</div>
+        <svg viewBox="0 0 680 310" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#5C5C58" stroke-width="1.5" stroke-linecap="round"/>
+                </marker>
+                <marker id="a2r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#B91C1C" stroke-width="1.5" stroke-linecap="round"/>
+                </marker>
+            </defs>
+            <rect x="250" y="12" width="180" height="30" rx="5" fill="#F2F2EE" stroke="#C8C8C2" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#1A1A18" x="340" y="31" text-anchor="middle">Student clicks "Start Exam"</text>
+            <line x1="340" y1="42" x2="340" y2="60" stroke="#5C5C58" stroke-width="1.5" marker-end="url(#a2)"/>
+            <rect x="180" y="60" width="320" height="30" rx="5" fill="#EBF0FC" stroke="#1B3A8C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#1B3A8C" x="340" y="79" text-anchor="middle">API Gateway — passes everything through, no admission control</text>
+            <line x1="230" y1="90" x2="120" y2="118" stroke="#5C5C58" stroke-width="1.5" marker-end="url(#a2)"/>
+            <line x1="340" y1="90" x2="340" y2="118" stroke="#5C5C58" stroke-width="1.5" marker-end="url(#a2)"/>
+            <line x1="450" y1="90" x2="560" y2="118" stroke="#5C5C58" stroke-width="1.5" marker-end="url(#a2)"/>
+            <rect x="40" y="118" width="160" height="30" rx="5" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#B91C1C" x="120" y="137" text-anchor="middle">Session service — waiting</text>
+            <rect x="260" y="118" width="160" height="30" rx="5" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#B91C1C" x="340" y="137" text-anchor="middle">Question service — waiting</text>
+            <rect x="480" y="118" width="160" height="30" rx="5" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#B91C1C" x="560" y="137" text-anchor="middle">Code runner — waiting</text>
+            <line x1="120" y1="148" x2="120" y2="174" stroke="#B91C1C" stroke-width="1.5" marker-end="url(#a2r)"/>
+            <line x1="340" y1="148" x2="340" y2="174" stroke="#B91C1C" stroke-width="1.5" marker-end="url(#a2r)"/>
+            <line x1="560" y1="148" x2="560" y2="174" stroke="#B91C1C" stroke-width="1.5" marker-end="url(#a2r)"/>
+            <rect x="40" y="174" width="160" height="30" rx="5" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="120" y="193" text-anchor="middle">User DB — overloaded</text>
+            <rect x="260" y="174" width="160" height="30" rx="5" fill="#1C1C1A" stroke="#B91C1C" stroke-width="2"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="700" fill="#FAFAF8" x="340" y="188" text-anchor="middle">Question DB</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#B91C1C" x="340" y="200" text-anchor="middle">overloaded · 1ms → 10s</text>
+            <rect x="480" y="174" width="160" height="30" rx="5" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="560" y="193" text-anchor="middle">Code exec — overloaded</text>
+            <path d="M260 189 Q215 153 260 133" fill="none" stroke="#B91C1C" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#a2r)" opacity="0.7"/>
+            <path d="M260 133 Q205 95 180 75" fill="none" stroke="#B91C1C" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#a2r)" opacity="0.4"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#B91C1C" x="195" y="148" text-anchor="end">freeze</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#B91C1C" x="190" y="98" text-anchor="end">propagates up</text>
+            <rect x="40" y="224" width="600" height="28" rx="5" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#B91C1C" x="340" y="242" text-anchor="middle">No circuit breaker → Question DB slows → every service above it hangs → student sees a skeleton forever</text>
+            <rect x="40" y="264" width="600" height="28" rx="5" fill="#EDFAF4" stroke="#0A6644" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#0A6644" x="340" y="282" text-anchor="middle">With circuit breaker → Question DB slows → "temporarily unavailable" in 100ms → everything else keeps working</text>
+        </svg>
+        <p class="fig-caption">
+            Without a circuit breaker, one slow database freezes the entire call chain.
+            The failure does not stay local — it propagates upward until the browser gets nothing.
+        </p>
+    </div>
+
+    <p>
+        Four solutions address this failure. Each targets a different layer.
+        Together they would have meant the exam opened on time for everyone.
+    </p>
+
+    <!-- ── SOLUTION 1: VIRTUAL WAITING ROOM ── -->
+    <h3>Solution 1 — Virtual waiting room</h3>
+
+    <p>
+        The problem started before any code ran: too many students hit the
+        backend at the same moment. The solution is to intercept that spike
+        <em>before</em> it reaches origin servers — and instead of showing
+        students an error, show them a queue position.
+    </p>
+
+    <p>
+        A virtual waiting room works exactly like a physical queue outside a concert venue.
+        When a student arrives, they get a ticket with their position: <em>"You are #847.
+        Estimated wait: 4 minutes."</em> The backend only admits as many students per
+        second as it can comfortably handle. The exam timer does not start until
+        they are actually inside. Students are not penalised for the wait.
+    </p>
+
+    <!-- Figure 3: Waiting Room diagram -->
+    <div class="fig">
+        <div class="fig-label">Figure 3 — How a virtual waiting room meters traffic</div>
+        <svg viewBox="0 0 680 310" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="wr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#5C5C58" stroke-width="1.5" stroke-linecap="round"/>
+                </marker>
+                <marker id="wrg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#0A6644" stroke-width="1.5" stroke-linecap="round"/>
+                </marker>
+                <marker id="wrr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#B91C1C" stroke-width="1.5" stroke-linecap="round"/>
+                </marker>
+            </defs>
+
+            <!-- Left: burst of students -->
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#5C5C58" x="75" y="18" text-anchor="middle">BURST AT 10:00 AM</text>
+            <!-- Student dots -->
+            <circle cx="28"  cy="50"  r="9" fill="#B91C1C" opacity="0.85"/>
+            <circle cx="52"  cy="38"  r="9" fill="#B91C1C" opacity="0.85"/>
+            <circle cx="76"  cy="50"  r="9" fill="#B91C1C" opacity="0.85"/>
+            <circle cx="100" cy="38"  r="9" fill="#B91C1C" opacity="0.85"/>
+            <circle cx="28"  cy="72"  r="9" fill="#B91C1C" opacity="0.7"/>
+            <circle cx="52"  cy="84"  r="9" fill="#B91C1C" opacity="0.7"/>
+            <circle cx="76"  cy="72"  r="9" fill="#B91C1C" opacity="0.7"/>
+            <circle cx="100" cy="84"  r="9" fill="#B91C1C" opacity="0.7"/>
+            <circle cx="28"  cy="106" r="9" fill="#B91C1C" opacity="0.5"/>
+            <circle cx="52"  cy="118" r="9" fill="#B91C1C" opacity="0.5"/>
+            <circle cx="76"  cy="106" r="9" fill="#B91C1C" opacity="0.5"/>
+            <circle cx="100" cy="118" r="9" fill="#B91C1C" opacity="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="64" y="144" text-anchor="middle">thousands hit at once</text>
+
+            <!-- Arrow into waiting room -->
+            <line x1="115" y1="78" x2="155" y2="78" stroke="#5C5C58" stroke-width="2" marker-end="url(#wr)"/>
+
+            <!-- Middle: Waiting room queue -->
+            <rect x="155" y="28" width="200" height="180" rx="8" fill="#FFFBEB" stroke="#D97706" stroke-width="1.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#92400E" x="255" y="50" text-anchor="middle">VIRTUAL WAITING ROOM</text>
+
+            <!-- Queued students with position numbers -->
+            <circle cx="205" cy="78" r="8" fill="#D97706" opacity="0.9"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="8" font-weight="700" fill="white" x="205" y="81" text-anchor="middle">#1</text>
+            <circle cx="233" cy="78" r="8" fill="#D97706" opacity="0.8"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="8" font-weight="700" fill="white" x="233" y="81" text-anchor="middle">#2</text>
+            <circle cx="261" cy="78" r="8" fill="#D97706" opacity="0.7"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="8" font-weight="700" fill="white" x="261" y="81" text-anchor="middle">#3</text>
+            <circle cx="289" cy="78" r="8" fill="#D97706" opacity="0.6"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="8" font-weight="700" fill="white" x="289" y="81" text-anchor="middle">#4</text>
+            <circle cx="317" cy="78" r="8" fill="#D97706" opacity="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="8" font-weight="700" fill="white" x="317" y="81" text-anchor="middle">#5</text>
+
+            <!-- what the student sees -->
+            <rect x="175" y="105" width="160" height="54" rx="5" fill="white" stroke="#D97706" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="700" fill="#92400E" x="255" y="122" text-anchor="middle">You are #847 in queue</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#92400E" x="255" y="137" text-anchor="middle">Estimated wait: 4 min</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#5C5C58" x="255" y="152" text-anchor="middle">Your exam timer starts after entry</text>
+
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#92400E" x="255" y="195" text-anchor="middle">Throttle: admit N students/sec</text>
+
+            <!-- Arrow out to backend — controlled rate -->
+            <line x1="355" y1="118" x2="405" y2="118" stroke="#0A6644" stroke-width="2" marker-end="url(#wrg)"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#0A6644" x="380" y="112" text-anchor="middle">controlled</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#0A6644" x="380" y="132" text-anchor="middle">rate</text>
+
+            <!-- Right: happy backend -->
+            <rect x="405" y="58" width="200" height="120" rx="8" fill="#EDFAF4" stroke="#0A6644" stroke-width="1.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#0A6644" x="505" y="82" text-anchor="middle">BACKEND SERVICES</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#0A6644" x="505" y="100" text-anchor="middle">receives a steady, manageable</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#0A6644" x="505" y="115" text-anchor="middle">stream — never overwhelmed</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#0A6644" x="505" y="133" text-anchor="middle">DB latency: 1ms ✓</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#0A6644" x="505" y="149" text-anchor="middle">HTTP 200 ✓</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#0A6644" x="505" y="165" text-anchor="middle">Exam loads ✓</text>
+
+            <!-- Bottom comparison bar -->
+            <rect x="20" y="240" width="300" height="52" rx="6" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="700" fill="#B91C1C" x="170" y="258" text-anchor="middle">Without waiting room</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#B91C1C" x="170" y="272" text-anchor="middle">Student sees: "Internal server error"</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#B91C1C" x="170" y="285" text-anchor="middle">No information · No control · Retries flood the system</text>
+
+            <rect x="360" y="240" width="300" height="52" rx="6" fill="#EDFAF4" stroke="#0A6644" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="700" fill="#0A6644" x="510" y="258" text-anchor="middle">With waiting room</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#0A6644" x="510" y="272" text-anchor="middle">Student sees: "You are #847, est. 4 min"</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#0A6644" x="510" y="285" text-anchor="middle">Informed · Calm · No retries · Backend survives</text>
+        </svg>
+        <p class="fig-caption">
+            The waiting room converts a synchronized wall of traffic into a
+            controlled, metered stream. The backend never sees the spike.
+            Students never see an error.
+        </p>
+    </div>
+
+    <p>
+        This is not custom infrastructure that needs to be built from scratch.
+        Cloudflare offers a production-ready implementation called
+        <a href="https://www.cloudflare.com/en-gb/application-services/products/waiting-room/" target="_blank">Cloudflare Waiting Room</a>
+        that can be configured in minutes. You set a threshold — say,
+        500 concurrent active users — and Cloudflare handles everything else:
+        queue management, position display, session cookies, and metered admission.
+        No backend changes required.
+    </p>
+
+    <!-- ── SOLUTION 2: CIRCUIT BREAKERS ── -->
+    <h3>Solution 2 — Circuit breakers between services</h3>
+
+    <p>
+        Even with a waiting room, the backend can still have slow moments.
+        A database can lag. An external API can pause. The question is:
+        when one thing slows down, does it stay contained — or does it
+        freeze everything connected to it?
+    </p>
+
+    <p>
+        Without a circuit breaker, every service in a synchronous call chain
+        waits for the one below it. The Question DB slows → Question service
+        starts timing out → it holds the API Gateway thread open → the student's
+        browser waits the full 5 seconds → retry. With a circuit breaker,
+        the moment Question service detects the DB is slow, it stops waiting
+        and returns a fallback immediately. The failure stays at that one service.
+        Session setup continues. The student gets a meaningful message,
+        not a skeleton screen.
+    </p>
+
+    <!-- Figure 4: Circuit breaker before/after -->
+    <div class="fig">
+        <div class="fig-label">Figure 4 — Circuit breaker: before vs. after</div>
+        <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="cb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#5C5C58" stroke-width="1.5" stroke-linecap="round"/>
+                </marker>
+                <marker id="cbr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#B91C1C" stroke-width="1.5" stroke-linecap="round"/>
+                </marker>
+                <marker id="cbg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#0A6644" stroke-width="1.5" stroke-linecap="round"/>
+                </marker>
+            </defs>
+
+            <!-- BEFORE label -->
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" fill="#B91C1C" x="160" y="18" text-anchor="middle">WITHOUT circuit breaker</text>
+
+            <rect x="20"  y="30" width="80" height="28" rx="4" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#B91C1C" x="60" y="48" text-anchor="middle">API Gateway</text>
+            <line x1="100" y1="44" x2="118" y2="44" stroke="#B91C1C" stroke-width="1.5" marker-end="url(#cbr)"/>
+
+            <rect x="118" y="30" width="80" height="28" rx="4" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#B91C1C" x="158" y="48" text-anchor="middle">Question Svc</text>
+            <line x1="198" y1="44" x2="216" y2="44" stroke="#B91C1C" stroke-width="1.5" marker-end="url(#cbr)"/>
+
+            <rect x="216" y="30" width="80" height="28" rx="4" fill="#1C1C1A" stroke="#B91C1C" stroke-width="2"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="700" fill="#FAFAF8" x="256" y="48" text-anchor="middle">Question DB 🔴</text>
+
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#B91C1C" x="160" y="78" text-anchor="middle">DB slows → Question Svc hangs (5s) → Gateway hangs (5s) → student waits</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#B91C1C" x="160" y="90" text-anchor="middle">→ timeout → error → retry → more load → spiral</text>
+
+            <!-- Divider -->
+            <line x1="340" y1="14" x2="340" y2="220" stroke="#E4E4DF" stroke-width="1" stroke-dasharray="5 3"/>
+
+            <!-- AFTER label -->
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" fill="#0A6644" x="510" y="18" text-anchor="middle">WITH circuit breaker</text>
+
+            <rect x="360" y="30" width="80" height="28" rx="4" fill="#EDFAF4" stroke="#0A6644" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#0A6644" x="400" y="48" text-anchor="middle">API Gateway</text>
+            <line x1="440" y1="44" x2="458" y2="44" stroke="#0A6644" stroke-width="1.5" marker-end="url(#cbg)"/>
+
+            <rect x="458" y="30" width="80" height="28" rx="4" fill="#EDFAF4" stroke="#0A6644" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#0A6644" x="498" y="48" text-anchor="middle">Question Svc ⚡</text>
+
+            <!-- Circuit breaker trips — shows fallback path -->
+            <line x1="538" y1="44" x2="556" y2="44" stroke="#B91C1C" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#cbr)"/>
+            <rect x="556" y="30" width="80" height="28" rx="4" fill="#1C1C1A" stroke="#B91C1C" stroke-width="2"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="700" fill="#FAFAF8" x="596" y="48" text-anchor="middle">Question DB 🔴</text>
+
+            <!-- Fallback arrow back -->
+            <path d="M498 58 Q498 90 460 100" fill="none" stroke="#0A6644" stroke-width="1.5" marker-end="url(#cbg)"/>
+            <rect x="360" y="100" width="200" height="30" rx="4" fill="#EDFAF4" stroke="#0A6644" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#0A6644" x="460" y="119" text-anchor="middle">⚡ trips → returns fallback in 50ms</text>
+
+            <!-- Benefit text -->
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#0A6644" x="510" y="155" text-anchor="middle">DB slows → breaker trips in 50ms</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#0A6644" x="510" y="167" text-anchor="middle">Session service unaffected</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#0A6644" x="510" y="179" text-anchor="middle">Student sees clear message, not blank screen</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="9" fill="#0A6644" x="510" y="191" text-anchor="middle">No retry storm. Load stays stable.</text>
+
+            <!-- Summary bar -->
+            <rect x="20" y="220" width="640" height="30" rx="5" fill="#F2F2EE" stroke="#C8C8C2" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="600" fill="#1A1A18" x="340" y="239" text-anchor="middle">A circuit breaker costs one library import. The absence of one cost 40 minutes of downtime for thousands of students.</text>
+        </svg>
+        <p class="fig-caption">
+            The circuit breaker does not fix the slow database. It stops the slowness from
+            propagating up the chain. The failure stays local. Everything else keeps running.
+        </p>
+    </div>
+
+    <!-- ── SOLUTION 3 & 4 ── -->
+    <h3>Solution 3 — Cache warming and CDN for static content</h3>
+
+    <p>
+        The instruction pages and exam UI are static — they look the same for
+        every student. Serving them from the origin server during a spike is
+        unnecessary work. A CDN (Cloudflare, Akamai, AWS CloudFront) caches
+        these at edge nodes globally and serves them in under 50ms,
+        regardless of how many students request them at once.
+        The origin server is never involved.
+    </p>
+
+    <p>
+        Similarly, question data does not change during the exam.
+        It should be loaded into a cache (Redis) 10–15 minutes before the exam starts.
+        When students begin and the Question service gets requests, it reads from memory
+        in under 1ms — the database is barely touched. Ticketmaster and exam platforms
+        like HackerRank do this routinely before high-volume events.
+    </p>
+
+    <h3>Solution 4 — Asynchronous code execution</h3>
+
+    <p>
+        Running submitted code is slow — sometimes 2–10 seconds per execution,
+        depending on the problem. If the HTTP thread sits and waits for that result,
+        it is blocked for the entire duration. Under thousands of concurrent submissions,
+        the thread pool drains instantly.
+    </p>
+
+    <p>
+        The fix: submit code to an internal queue, return a job ID immediately,
+        and push the result back via WebSocket when it is ready. The student sees
+        a spinner for a few seconds instead of an error. The server thread is
+        freed the moment the job is submitted. This is how every competitive
+        programming platform (Codeforces, LeetCode, HackerRank) operates —
+        execution is always asynchronous.
+    </p>
+
+
+    <!-- ── SECTION 3: EMAIL FAILURE ── -->
+    <h2>Failure 2 — Emails arrived out of order, five hours late</h2>
+
+    <p>
+        The exam failure was visible in real time. The email failure was quieter
+        but arguably more harmful — it sent contradictory information to students
+        who were already in the middle of a stressful situation.
+    </p>
+
+    <div class="callout amber">
+        <div class="callout-tag">Reconstructed timeline — not verified</div>
+        The timestamps below are inferred from student-reported delivery times and the
+        observable sequence of events. The exact minutes Infosys ops triggered each
+        email are not public. What is verified: two contradictory reschedule emails
+        arrived out of sequence, hours after they were sent. The timeline is
+        illustrative of the failure pattern, not a confirmed log.
+    </div>
+
+    <ul class="tl">
+        <li class="red">
+            <span class="time">10:00 AM</span>
+            Exam portal crashes. Students cannot get in.
+        </li>
+        <li class="amber">
+            <span class="time">~10:30 AM (inferred)</span>
+            Ops team triggers email: <em>"Exam rescheduled to 11 AM today."</em>
+            This is <strong>Event A</strong>. It enters the email queue.
+        </li>
+        <li class="amber">
+            <span class="time">~11:30 AM (inferred)</span>
+            Still broken. New decision. Triggers: <em>"Exam rescheduled to May 24."</em>
+            This is <strong>Event B</strong> — queued after Event A.
+        </li>
+        <li class="red">
+            <span class="time">~2:30 PM (student-reported)</span>
+            Student receives <strong>Event B</strong>. Sent second. Arrived first.
+        </li>
+        <li class="red">
+            <span class="time">~3:30 PM (student-reported)</span>
+            Student receives <strong>Event A</strong>. Sent first. Arrived hours late.
+            Refers to 11 AM — which was already four hours in the past.
+        </li>
+    </ul>
+
+    <!-- Figure 4 -->
+    <div class="fig">
+        <div class="fig-label">Figure 4 — Three independent email failures, one broken experience</div>
+        <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="a4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#5C5C58" stroke-width="1.5" stroke-linecap="round"/>
+                </marker>
+                <marker id="a4r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="#B91C1C" stroke-width="1.5" stroke-linecap="round"/>
+                </marker>
+            </defs>
+
+            <!-- Row 1: Queue backlog -->
+            <rect x="20" y="12" width="640" height="20" rx="4" fill="#F2F2EE" stroke="#C8C8C2" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#1A1A18" x="340" y="26" text-anchor="middle">Problem 1 — Queue already full from the 10 AM crash. Event A waited 5 hours.</text>
+
+            <rect x="28" y="42" width="150" height="40" rx="5" fill="#FFFBEB" stroke="#D97706" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#92400E" x="103" y="59" text-anchor="middle">Event A sent (inferred)</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#92400E" x="103" y="74" text-anchor="middle">~10:30 AM</text>
+
+            <line x1="178" y1="62" x2="212" y2="62" stroke="#5C5C58" stroke-width="1.2" marker-end="url(#a4)"/>
+
+            <rect x="212" y="42" width="200" height="40" rx="5" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#B91C1C" x="312" y="56" text-anchor="middle">50,000+ items in queue</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="312" y="70" text-anchor="middle">error events from the crash still processing</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="312" y="82" text-anchor="middle"> </text>
+
+            <line x1="412" y1="62" x2="446" y2="62" stroke="#5C5C58" stroke-width="1.2" marker-end="url(#a4)"/>
+
+            <rect x="446" y="42" width="214" height="40" rx="5" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#B91C1C" x="553" y="59" text-anchor="middle">Event A delivered 3:30 PM</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="553" y="74" text-anchor="middle">5 hours after it was sent</text>
+
+            <!-- Row 2: No ordering -->
+            <rect x="20" y="102" width="640" height="20" rx="4" fill="#F2F2EE" stroke="#C8C8C2" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#1A1A18" x="340" y="116" text-anchor="middle">Problem 2 — Multiple workers, no order per student. Faster worker delivered Event B first.</text>
+
+            <rect x="28" y="134" width="120" height="36" rx="5" fill="#FFFBEB" stroke="#D97706" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#92400E" x="88" y="155" text-anchor="middle">Event A + B</text>
+
+            <line x1="148" y1="149" x2="186" y2="138" stroke="#5C5C58" stroke-width="1" marker-end="url(#a4)"/>
+            <line x1="148" y1="158" x2="186" y2="169" stroke="#5C5C58" stroke-width="1" marker-end="url(#a4)"/>
+
+            <rect x="186" y="126" width="110" height="26" rx="4" fill="#EBF0FC" stroke="#1B3A8C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#1B3A8C" x="241" y="142" text-anchor="middle">Worker 1 — slow</text>
+
+            <rect x="186" y="160" width="110" height="26" rx="4" fill="#EBF0FC" stroke="#1B3A8C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#1B3A8C" x="241" y="176" text-anchor="middle">Worker 2 — fast</text>
+
+            <line x1="296" y1="139" x2="334" y2="154" stroke="#B91C1C" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#a4r)"/>
+            <line x1="296" y1="173" x2="334" y2="162" stroke="#0A6644" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#a4)"/>
+
+            <rect x="334" y="134" width="200" height="52" rx="5" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#B91C1C" x="434" y="155" text-anchor="middle">B arrives ~2:30 PM (reported)</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#B91C1C" x="434" y="173" text-anchor="middle">A arrives ~3:30 PM (reported)</text>
+
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#5C5C58" x="553" y="155" text-anchor="start">Fix: use</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#5C5C58" x="553" y="168" text-anchor="start">partition</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#5C5C58" x="553" y="181" text-anchor="start">key = user_id</text>
+
+            <!-- Row 3: No supersession -->
+            <rect x="20" y="204" width="640" height="20" rx="4" fill="#F2F2EE" stroke="#C8C8C2" stroke-width="0.5"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" fill="#1A1A18" x="340" y="218" text-anchor="middle">Problem 3 — When Event B was created, Event A should have been cancelled. It wasn't.</text>
+
+            <rect x="28" y="236" width="260" height="50" rx="5" fill="#FEF2F2" stroke="#B91C1C" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#B91C1C" x="158" y="256" text-anchor="middle">What they had</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="158" y="272" text-anchor="middle">Dumb pipe — both emails always sent</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#B91C1C" x="158" y="282" text-anchor="middle">No memory of what came before</text>
+
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="18" fill="#C8C8C2" x="337" y="268" text-anchor="middle">→</text>
+
+            <rect x="352" y="236" width="308" height="50" rx="5" fill="#EDFAF4" stroke="#0A6644" stroke-width="1"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#0A6644" x="506" y="256" text-anchor="middle">What it needed</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#0A6644" x="506" y="272" text-anchor="middle">Cancel pending Event A before enqueuing Event B</text>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="10" fill="#0A6644" x="506" y="282" text-anchor="middle">Email service only sees what is still relevant</text>
+
+            <!-- Summary -->
+            <rect x="20" y="302" width="640" height="30" rx="5" fill="#1C1C1A"/>
+            <text font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#FAFAF8" x="340" y="320" text-anchor="middle">All three are independent failures. Each needs a separate fix. None is hard. None was done.</text>
+        </svg>
+        <p class="fig-caption">
+            Problem 1 is queue capacity. Problem 2 is missing ordering. Problem 3 is missing business logic.
+            They are independent — fixing one does not fix the others.
+        </p>
+    </div>
+
+    <h3>The root misunderstanding — ordering is not the email service's job</h3>
+
+    <p>
+        Before looking at the fixes, there is a conceptual point worth making clearly,
+        because it changes how you think about the entire problem.
+    </p>
+
+    <div class="callout blue">
+        <div class="callout-tag">The right mental model</div>
+        <strong>The email service's job:</strong> deliver every message, in the order it was given,
+        to the right recipient. It does not know — and should not know — what is inside the email.<br><br>
+        <strong>The application's job:</strong> decide which emails to send, in what order,
+        and whether any earlier email should be cancelled before a new one goes out.<br><br>
+        These are two completely separate responsibilities. Mix them and you get an email service
+        that is hard to test, hard to reason about, and tightly coupled to business logic that
+        will keep changing.
+    </div>
+
+    <p>
+        With that separation in mind, the three problems each have a clean solution
+        at the right layer.
+    </p>
+
+    <h3>Fix for Problem 1 — The queue backlog</h3>
+
+    <p>
+        The email queue was backed up because it shared capacity with everything else —
+        error events, retry signals, system logs. The fix is separation.
+        Critical student-facing notifications should go on a dedicated, high-priority queue
+        that is sized independently and never competes with system noise.
+        A reschedule email triggered by the ops team should not queue behind
+        50,000 error events from the crash that caused the reschedule.
+    </p>
+
+    <h3>Fix for Problem 2 — Ordering (infrastructure layer, content-agnostic)</h3>
+
+    <p>
+        This is where the conceptual point above matters most. You do not need to
+        write any logic that reads the email content to enforce ordering.
+        You enforce it at the queue level, purely by routing.
+    </p>
+
+    <p>
+        The principle: route every message for the same recipient to the same
+        queue partition, consumed by the same worker.
+        One consumer per student = strict FIFO, automatically.
+        The content of the email is completely irrelevant.
+    </p>
+
+    <pre>
+<span class="c"># The entire ordering guarantee is this one field</span>
+producer.send(
+    topic=<span class="s">"email_notifications"</span>,
+    key=user_id,        <span class="c"># user X → partition X → worker X → FIFO, always</span>
+    value=email_payload <span class="c"># worker never looks inside this to decide ordering</span>
+)
+</pre>
+
+    <p>
+        In Kafka, this is the partition key. In Amazon SQS FIFO, this is
+        the <code>MessageGroupId</code>. It is a single configuration field.
+        It does not require the queue to understand reschedules, confirmations,
+        or any other email concept.
+    </p>
+
+    <p>
+        If you cannot change the queue infrastructure, you can enforce ordering
+        at the consumer level using a sequence number — still without reading content:
+    </p>
+
+    <pre>
+<span class="c"># At enqueue time — attach a monotonically increasing number per user</span>
+seq = redis.incr(<span class="s">f"email_seq:{user_id}"</span>)   <span class="c"># atomic — always increases</span>
+queue.send(user_id=user_id, seq=seq, payload=payload)
+
+<span class="c"># At consumer time — check the number before sending</span>
+last = redis.get(<span class="s">f"last_sent:{user_id}"</span>) or 0
+if message.seq &lt;= last:
+    return  <span class="c"># arrived out of order — discard silently</span>
+send_email(message.payload)
+redis.set(<span class="s">f"last_sent:{user_id}"</span>, message.seq)
+</pre>
+
+    <p>
+        The consumer never reads the email content. It just compares two numbers.
+        Message arriving out of order? Drop it. The email service remains completely generic.
+    </p>
+
+    <p>
+        For the most robust setup — one that also guarantees an email is never sent
+        if the business event that triggered it failed to commit — there is the
+        <strong>Outbox Pattern</strong>. Write to your own database table inside the
+        same transaction as the business event. A relay process reads from that table
+        in order, sends the email, marks it sent. Ordering lives in a SQL
+        <code>ORDER BY</code> — the most reliable ordering primitive in existence.
+    </p>
+
+    <pre>
+<span class="c">-- Business event and email notification in one atomic write</span>
+<span class="k">BEGIN</span>;
+  <span class="k">UPDATE</span> exam_sessions <span class="k">SET</span> status = <span class="s">'rescheduled'</span> <span class="k">WHERE</span> student_id = 42;
+  <span class="k">INSERT INTO</span> outbox (user_id, payload, created_at, sent_at)
+  <span class="k">VALUES</span> (42, <span class="s">'{"template":"reschedule"}'</span>, NOW(), <span class="k">NULL</span>);
+<span class="k">COMMIT</span>;
+
+<span class="c">-- Relay reads in strict order — regardless of how many workers run</span>
+<span class="k">SELECT</span> * <span class="k">FROM</span> outbox
+<span class="k">WHERE</span>  sent_at <span class="k">IS NULL</span>
+<span class="k">ORDER BY</span> user_id, created_at <span class="k">ASC</span>;
+</pre>
+
+    <h3>Fix for Problem 3 — Supersession (application layer)</h3>
+
+    <p>
+        This one is the application's responsibility — and only the application's.
+        The email service must not know about it.
+        When the ops team triggered Event B, they should have cancelled Event A
+        before enqueuing anything. The email service only sees <code>status = 'pending'</code>
+        rows. It executes what it is given, in order, and nothing more.
+    </p>
+
+    <pre>
+<span class="c">-- Cancel what is no longer true. Then create what is.</span>
+<span class="k">BEGIN</span>;
+  <span class="k">UPDATE</span> notification_jobs
+  <span class="k">SET</span>    status = <span class="s">'cancelled'</span>
+  <span class="k">WHERE</span>  student_id = 42 <span class="k">AND</span> status = <span class="s">'pending'</span>;
+
+  <span class="k">INSERT INTO</span> notification_jobs (student_id, template, status)
+  <span class="k">VALUES</span> (42, <span class="s">'reschedule_may24'</span>, <span class="s">'pending'</span>);
+<span class="k">COMMIT</span>;
+</pre>
+
+    <p>
+        The email service never sees the cancelled row.
+        It does not know a reschedule happened. It does not need to.
+        The business decision was made in the application. The email service
+        just delivers the remaining truth.
+    </p>
+
+    <div class="callout green">
+        <div class="callout-tag">The key takeaway</div>
+        A standard queue is a throughput primitive, not an ordering primitive.
+        It promises: "I will deliver every message at least once."
+        It does not promise: "in the order you gave them to me."
+        If you need both — delivery <em>and</em> order — you need to buy
+        that guarantee explicitly, at the infrastructure level, before any
+        message enters the pipe.
+        The content of the message is irrelevant to this decision.
+        Structure is everything. Content is nothing.
+    </div>
+
+
+    <!-- ── SECTION 4: LOAD TEST ── -->
+    <h2>A two-hour test would have caught all of this</h2>
+
+    <p>
+        Every failure here is reproducible in a staging environment
+        before a single real student logs in.
+    </p>
+
+    <table class="tbl">
+        <thead>
+        <tr>
+            <th>Simulate this</th>
+            <th>Tool</th>
+            <th>What it reveals</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>10,000 logins at T=0, same second</td>
+            <td>k6 / Locust</td>
+            <td class="bad">DB saturation, session timeout, death spiral</td>
+        </tr>
+        <tr>
+            <td>10,000 question fetches simultaneously</td>
+            <td>k6</td>
+            <td class="bad">Cold cache miss storm, Question DB overwhelmed</td>
+        </tr>
+        <tr>
+            <td>Clients retry immediately on 5s timeout</td>
+            <td>k6 with retry logic</td>
+            <td class="bad">Load doubles — cascade becomes visible immediately</td>
+        </tr>
+        <tr>
+            <td>50,000 emails queued in one burst</td>
+            <td>Custom script</td>
+            <td class="bad">5-hour delivery delay visible in staging</td>
+        </tr>
+        <tr>
+            <td>Two events for same student, 1 hour apart</td>
+            <td>Custom script</td>
+            <td class="bad">Out-of-order delivery, no cancellation observed</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>
+        The cost of running these: one afternoon on a staging environment.
+        The cost of not running them was paid by tens of thousands of students
+        at a moment that mattered to their careers.
+    </p>
+
+
+    <!-- ── SECTION 5: LESSONS ── -->
+    <h2>What to remember</h2>
+
+    <div class="principles">
+
+        <div class="principle">
+            <div class="principle-n">01</div>
+            <div class="principle-h">High traffic and synchronized traffic are different problems</div>
+            <p>Your capacity number is a rate — requests per second, sustained.
+                A thundering herd delivers the entire burst in milliseconds.
+                If you have not simulated everyone hitting start at the same second,
+                you have not tested for the actual risk.</p>
+        </div>
+
+        <div class="principle">
+            <div class="principle-n">02</div>
+            <div class="principle-h">Microservices do not protect you — circuit breakers do</div>
+            <p>Independent deployability is not the same as independent failure.
+                Without circuit breakers, one slow database freezes every service in the chain.
+                Microservices actually make this worse, because there are more links
+                in the chain. The architecture style does not matter. The resilience patterns do.</p>
+        </div>
+
+        <div class="principle">
+            <div class="principle-n">03</div>
+            <div class="principle-h">A fast rejection is better than a slow timeout</div>
+            <p>A request rejected in 1ms uses almost no resources.
+                A request that waits 5 seconds and then retries holds connection slots,
+                threads, and memory — and then doubles the load on the next attempt.
+                Saying no quickly often delivers a better experience than trying to
+                say yes to everyone at once.</p>
+        </div>
+
+        <div class="principle">
+            <div class="principle-n">04</div>
+            <div class="principle-h">A standard queue promises delivery, not order</div>
+            <p>At-least-once delivery and FIFO are two separate guarantees.
+                If you need both, you need the right tool — Kafka partition keys,
+                SQS FIFO groups, or the outbox pattern. The default behaviour is:
+                deliver everything, in whatever order workers happen to finish.</p>
+        </div>
+
+        <div class="principle">
+            <div class="principle-n">05</div>
+            <div class="principle-h">The email service should not understand what it is sending</div>
+            <p>Ordering and cancellation logic belongs in the application layer,
+                handled before any message enters the email pipeline.
+                A well-designed email service is a generic, reliable pipe.
+                Keep it that way.</p>
+        </div>
+
+        <div class="principle">
+            <div class="principle-n">06</div>
+            <div class="principle-h">Internal tools deserve the same testing as public products</div>
+            <p>This exam is used by lakhs of students at a moment that
+                directly shapes their careers. The word "internal" does not reduce
+                the obligation to test it under realistic load.
+                The people on the other side of the screen do not know — or care —
+                that it is an internal tool.</p>
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        <p>
+            <strong>What is verified:</strong> the exam portal was inaccessible for the majority of the
+            10:00–10:40 AM window (student screenshots confirm the skeleton screen and HTTP 500 errors),
+            and two contradictory reschedule emails arrived out of sequence hours after the incident.
+        </p>
+        <p style="margin-top:10px;">
+            <strong>What is inferred:</strong> the concurrent user count (~10,000), internal architecture
+            details (DB saturation, missing circuit breakers, shared email queue), and email trigger
+            timestamps (10:30 AM / 11:30 AM) are reasoned inferences from observed symptoms and
+            distributed systems failure patterns. They are illustrative, not confirmed implementation
+            details. No internal Infosys systems were accessed.
+        </p>
+        <p style="margin-top:10px;">
+            Written as a case study in distributed systems failure analysis · May 2026
+        </p>
+    </div>
+
+</div>
+</body>
+</html>

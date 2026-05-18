@@ -1,75 +1,107 @@
 import { Mail, MapPin, Phone, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profilePhoto from "@/assets/profile-photo.jpg";
+import bannerBg from "@/assets/banner.png";
 
 export function HeroSection() {
   return (
-    <section id="hero" className="hero-section px-6 pt-32">
-      <div className="container max-w-4xl mx-auto text-center animate-fade-in">
-        <div className="mb-8">
-          <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl animate-float">
+    <section 
+      id="hero" 
+      className="relative min-h-screen flex items-center px-6 overflow-hidden"
+    >
+      {/* Background Image Setup */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${bannerBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        {/* Mobile Overlay (Full background overlay with custom deep slate-forest tint for readability) */}
+        <div className="absolute inset-0 md:hidden bg-[#0c1619]/90 backdrop-blur-[4px] z-0" />
+
+        {/* Desktop Overlay (Beautiful fading gradient glassmorphism with a customized deep navy-forest tint that harmonizes with your shirt and the trees) */}
+        <div 
+          className="hidden md:block absolute inset-0 bg-gradient-to-r from-[#0a1215]/75 via-[#0a1215]/40 to-transparent z-0"
+          style={{
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            maskImage: 'linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 35%, rgba(0,0,0,0) 75%)',
+            WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 35%, rgba(0,0,0,0) 75%)',
+          }}
+        />
+
+        {/* Bottom Fade Overlay (Seamlessly transitions the hero banner into the standard page background color at the bottom) */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-0 pointer-events-none" />
+      </div>
+
+      <div className="container mx-auto z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full pt-24 pb-12 md:py-0">
+        {/* Left side content */}
+        <div className="md:col-span-8 lg:col-span-7 flex flex-col items-start text-left animate-fade-in duration-1000">
+          
+          {/* Mobile Profile Photo (optional, showing on mobile only since background handles desktop) */}
+          <div className="md:hidden w-24 h-24 mb-6 rounded-full overflow-hidden border-2 border-primary/50 shadow-xl animate-fade-in">
             <img
               src={profilePhoto}
-              alt="Parambrata Ghosh - Software Engineer"
+              alt="Parambrata Ghosh"
               className="w-full h-full object-cover"
             />
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">
-            Parambrata Ghosh
-          </h1>
-          <h2 className="text-xl md:text-2xl text-muted-foreground mb-6 font-medium">
-            Software Engineer
-          </h2>
-        </div>
 
-        <div className="max-w-3xl mx-auto mb-8 fade-in-delayed">
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Detail-oriented Software Engineer experienced in full-stack web development 
-            with a strong portfolio of SaaS, AI, and geospatial projects. Proven leadership 
-            in hackathons and internship settings. Skilled in React, Node.js, Python, 
-            PostgreSQL, and cloud-native architectures.
-          </p>
-        </div>
+          <div className="mb-6 fade-in-delayed">
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight drop-shadow-lg text-foreground">
+              Parambrata <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-200 bg-clip-text text-transparent drop-shadow-md">Ghosh</span>
+            </h1>
+            <h2 className="text-2xl md:text-3xl text-foreground/90 font-semibold drop-shadow-sm">
+              Software Engineer
+            </h2>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-8 fade-in-delayed">
-          <ContactItem
-            icon={<Mail className="w-4 h-4" />}
-            label="Email"
-            value="parambrataghosh26@gmail.com"
-            href="mailto:parambrataghosh26@gmail.com"
-          />
-          <ContactItem
-            icon={<Linkedin className="w-4 h-4" />}
-            label="LinkedIn"
-            value="linkedin.com/in/parambrataghosh"
-            href="https://www.linkedin.com/in/parambrataghosh"
-          />
-          <ContactItem
-            icon={<Github className="w-4 h-4" />}
-            label="GitHub"
-            value="github.com/param2610-cloud"
-            href="https://www.github.com/param2610-cloud"
-          />
-          <ContactItem
-            icon={<Phone className="w-4 h-4" />}
-            label="Mobile"
-            value="+91 8420282255"
-            href="tel:+918420282255"
-          />
-          <ContactItem
-            icon={<MapPin className="w-4 h-4" />}
-            label="Location"
-            value="Howrah, West Bengal, India"
-          />
-        </div>
+          <div className="max-w-xl mb-8 fade-in-delayed">
+            <p className="text-lg md:text-xl text-foreground/90 leading-relaxed font-medium drop-shadow-sm">
+              Detail-oriented Software Engineer experienced in full-stack web development 
+              with a strong portfolio of SaaS, AI, and geospatial projects. Proven leadership 
+              in hackathons and internship settings. Skilled in React, Node.js, Python, 
+              PostgreSQL, and cloud-native architectures.
+            </p>
+          </div>
 
-        <div className="flex justify-center space-x-4 fade-in-delayed">
-          <Button className="btn-primary" asChild>
-            <a href="#projects">View Projects</a>
-          </Button>
-          <Button className="btn-outline" asChild>
-            <a href="#contact">Get In Touch</a>
-          </Button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl mb-8 fade-in-delayed">
+            <ContactItem
+              icon={<Mail className="w-4 h-4" />}
+              label="Email"
+              value="parambrataghosh26@gmail.com"
+              href="mailto:parambrataghosh26@gmail.com"
+            />
+            <ContactItem
+              icon={<Linkedin className="w-4 h-4" />}
+              label="LinkedIn"
+              value="linkedin.com/in/parambrataghosh"
+              href="https://www.linkedin.com/in/parambrataghosh"
+            />
+            <ContactItem
+              icon={<Github className="w-4 h-4" />}
+              label="GitHub"
+              value="github.com/param2610-cloud"
+              href="https://www.github.com/param2610-cloud"
+            />
+            <ContactItem
+              icon={<MapPin className="w-4 h-4" />}
+              label="Location"
+              value="Howrah, India"
+            />
+          </div>
+
+          <div className="flex flex-wrap gap-4 fade-in-delayed">
+            <Button className="btn-primary shadow-lg" asChild>
+              <a href="#projects">View Projects</a>
+            </Button>
+            <Button className="btn-outline bg-background/60 backdrop-blur-md shadow-lg border-primary/50 hover:bg-primary hover:border-primary" asChild>
+              <a href="#contact">Get In Touch</a>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
