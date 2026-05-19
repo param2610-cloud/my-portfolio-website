@@ -8,18 +8,18 @@ import {
 } from "@/components/ui/hover-card";
 
 const allSkills = [
-  { name: "Python", category: "Language", icon: <Code className="w-8 h-8"/>, color: "#3776AB", exp: "3+ years", details: "Extensive experience in backend API development, data processing, and scripting. Built multiple RESTful APIs and automation tools." },
-  { name: "JavaScript", category: "Language", icon: <Code className="w-8 h-8"/>, color: "#F7DF1E", exp: "4+ years", details: "Core language for frontend development. Deep understanding of ES6+, asynchronous programming, and DOM manipulation." },
-  { name: "TypeScript", category: "Language", icon: <Code className="w-8 h-8"/>, color: "#3178C6", exp: "3 years", details: "Primary choice for robust frontend and backend codebases. Experienced with complex type definitions and generics." },
-  { name: "React", category: "Frontend", icon: <Globe className="w-8 h-8"/>, color: "#61DAFB", exp: "4 years", details: "Expert in building complex single-page applications. Proficient with React Hooks, Context API, and performance optimization." },
-  { name: "Next.js", category: "Frontend", icon: <Globe className="w-8 h-8"/>, color: "#ffffff", exp: "2 years", details: "Experience building server-rendered and statically generated applications. Skilled in App Router and API routes." },
-  { name: "Tailwind", category: "Frontend", icon: <Globe className="w-8 h-8"/>, color: "#06B6D4", exp: "3 years", details: "Go-to styling solution. Efficient in creating responsive, accessible, and maintainable UI components." },
-  { name: "Node.js", category: "Backend", icon: <Server className="w-8 h-8"/>, color: "#339933", exp: "3+ years", details: "Used for building scalable network applications. Experienced with Express.js, middleware, and async flows." },
-  { name: "PostgreSQL", category: "Database", icon: <Database className="w-8 h-8"/>, color: "#4169E1", exp: "3 years", details: "Primary relational database choice. Skilled in complex querying, indexing, and schema design." },
-  { name: "MongoDB", category: "Database", icon: <Database className="w-8 h-8"/>, color: "#47A248", exp: "2 years", details: "Used in various MERN stack projects for flexible, document-based data storage." },
-  { name: "Git", category: "Tools", icon: <Terminal className="w-8 h-8"/>, color: "#F05032", exp: "4+ years", details: "Proficient in version control, branching strategies, and collaborative workflows." },
-  { name: "AWS", category: "Cloud", icon: <Cloud className="w-8 h-8"/>, color: "#FF9900", exp: "1+ years", details: "Familiar with core services like EC2, S3, and RDS for deploying and scaling web applications." },
-  { name: "Prisma", category: "Tools", icon: <Package className="w-8 h-8"/>, color: "#ffffff", exp: "2 years", details: "Used as ORM for type-safe database access in Next.js and Node.js applications." },
+  { name: "TypeScript", category: "Language", icon: <Code className="w-8 h-8"/>, color: "#3178C6", exp: "3+ years", details: "Primary choice for full-stack. Used in Alkaa, ClassEdgee, React and Node.js codebases for robust typing." },
+  { name: "Python", category: "Language", icon: <Code className="w-8 h-8"/>, color: "#3776AB", exp: "3+ years", details: "Built AsyncIO microservices, FastAPI backends, constraint solvers, and ML inference pipelines." },
+  { name: "Node.js", category: "Backend", icon: <Server className="w-8 h-8"/>, color: "#339933", exp: "3+ years", details: "Architected multi-tenant SaaS, distributed systems, WebSocket servers, and async job queues." },
+  { name: "React", category: "Frontend", icon: <Globe className="w-8 h-8"/>, color: "#61DAFB", exp: "4 years", details: "Expert in SPAs. Optimized performance, virtualized lists, and complex state management with Zustand." },
+  { name: "PostgreSQL", category: "Database", icon: <Database className="w-8 h-8"/>, color: "#4169E1", exp: "3 years", details: "Designed 30+ table normalized schemas, composite indexes, and strict multi-tenant data isolation." },
+  { name: "Redis", category: "Database", icon: <Database className="w-8 h-8"/>, color: "#DC382D", exp: "2 years", details: "Built distributed health monitoring, failure detection, and high-performance caching layers." },
+  { name: "RabbitMQ", category: "Messaging", icon: <Server className="w-8 h-8"/>, color: "#FF6600", exp: "2 years", details: "Designed real-time event ingestion and distributed ML pipelines with durable message queues." },
+  { name: "Next.js", category: "Frontend", icon: <Globe className="w-8 h-8"/>, color: "#ffffff", exp: "2 years", details: "Built branch-scoped IT asset management and server-rendered applications with App Router." },
+  { name: "Tailwind", category: "Frontend", icon: <Globe className="w-8 h-8"/>, color: "#06B6D4", exp: "3 years", details: "Go-to styling solution. Used for responsive, accessible, and design-system tokenized UI components." },
+  { name: "Prisma", category: "Tools", icon: <Package className="w-8 h-8"/>, color: "#ffffff", exp: "2 years", details: "Used for type-safe database access, atomic transactions, and complex schema migrations." },
+  { name: "Docker", category: "DevOps", icon: <Terminal className="w-8 h-8"/>, color: "#2496ED", exp: "2 years", details: "Containerized microservices, managed environment configurations, and CI/CD deployment pipelines." },
+  { name: "AWS", category: "Cloud", icon: <Cloud className="w-8 h-8"/>, color: "#FF9900", exp: "1+ years", details: "Utilized EC2, S3, and CloudWatch for deploying, storing, and monitoring backend systems." },
 ];
 
 export function SkillsSection() {
