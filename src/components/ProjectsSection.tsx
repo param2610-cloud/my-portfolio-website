@@ -14,7 +14,7 @@ export const projects = [
       live: "https://alkaa.online/", 
       docs: "https://drive.google.com/file/d/1ts_Gk8KAfBbVsSyyCYfhI9YG8VxvYZR5/view?usp=sharing" 
     },
-    image: "/alkaa_real_bg.png"
+    image: "/alkaa_real_bg.webp"
   },
   {
     id: "neighbourlink",
@@ -26,7 +26,7 @@ export const projects = [
       live: "https://neighbourlink-murex.vercel.app/",
       docs: "https://github.com/param2610-cloud/NeighbourLink/blob/main/README.md"
     },
-    image: "/neighbourlink_real_bg.png"
+    image: "/neighbourlink_real_bg.webp"
   },
   {
     id: "classedgee",
@@ -38,7 +38,7 @@ export const projects = [
       live: "https://classedgee.vercel.app/",
       docs: "https://drive.google.com/file/d/1jFN--M_M85ybZjNnXCeqNzpbEjSOQIgt/view?usp=sharing"
     },
-    image: "/classedgee_real_bg.png"
+    image: "/classedgee_real_bg.webp"
   },
   {
     id: "finsolve",
@@ -49,7 +49,7 @@ export const projects = [
       github: "https://github.com/param2610-cloud/FinSolve-RAG-Assistant", 
       docs: "https://github.com/param2610-cloud/FinSolve-RAG-Assistant/blob/main/README.md"
     },
-    image: "/projectxplore_real_bg.png"
+    image: "/projectxplore_real_bg.webp"
   },
   {
     id: "assessment-engine",
@@ -61,7 +61,7 @@ export const projects = [
       live: "https://assessment-recommendation-engine.vercel.app/",
       docs: "https://drive.google.com/file/d/1ROYLBWX5O5Z5gmePV6AgnwBp-LQr9pW5/view?usp=sharing" 
     },
-    image: "/legallink_real_bg.png"
+    image: "/legallink_real_bg.webp"
   },
   {
     id: "dry-bean",
@@ -72,7 +72,7 @@ export const projects = [
       github: "https://github.com/param2610-cloud/Dry-Bean-Prediction", 
       docs: "https://github.com/param2610-cloud/Dry-Bean-Prediction/blob/main/README.md"
     },
-    image: "/bhoodrishti_real_bg.png"
+    image: "/bhoodrishti_real_bg.webp"
   }
 ];
 
@@ -82,7 +82,7 @@ export function ProjectsSection() {
       id="projects" 
       className="relative py-32 px-6 min-h-screen flex items-center shadow-[inset_0_0_80px_rgba(0,0,0,0.6)]"
       style={{
-        backgroundImage: 'url(/wood_wall.png)',
+        backgroundImage: 'url(/wood_wall.webp)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'

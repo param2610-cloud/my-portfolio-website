@@ -38,7 +38,7 @@ export default function ExperienceDetail() {
 
   if (!experience) {
     return (
-      <div className="min-h-screen bg-[#0f0a07] text-[#e5d9cd] flex flex-col items-center justify-center" style={{ backgroundImage: 'url(/wood_wall.png)', backgroundBlendMode: 'overlay', backgroundSize: 'cover' }}>
+      <div className="min-h-screen bg-[#0f0a07] text-[#e5d9cd] flex flex-col items-center justify-center" style={{ backgroundImage: 'url(/wood_wall.webp)', backgroundBlendMode: 'overlay', backgroundSize: 'cover' }}>
         <h1 className="text-4xl font-bold mb-4 drop-shadow-md">Dossier Not Found</h1>
         <Link to="/#experience" className="text-orange-400 font-bold hover:underline">
           Return to Cabinet

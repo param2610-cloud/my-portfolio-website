@@ -1,13 +1,14 @@
-import { Mail, MapPin, Phone, Github, Linkedin } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import profilePhoto from "@/assets/profile-photo.jpg";
-import bannerBg from "@/assets/banner.png";
+import profilePhoto from "@/assets/profile-photo.webp";
+
+const bannerBg = "/banner.webp";
 
 export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center px-6 overflow-hidden"
+      className="relative min-h-screen flex items-center px-6 overflow-hidden bg-[#0a1215]"
     >
       {/* Background Image Setup */}
       <div

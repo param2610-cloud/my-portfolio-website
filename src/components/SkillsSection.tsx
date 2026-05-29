@@ -28,7 +28,7 @@ export function SkillsSection() {
       id="skills" 
       className="relative min-h-screen py-24 px-6 overflow-hidden flex items-center justify-center shadow-[inset_0_0_50px_rgba(0,0,0,0.8)]"
       style={{
-        backgroundImage: `url(/wood_wall.png)`,
+        backgroundImage: `url(/wood_wall.webp)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
